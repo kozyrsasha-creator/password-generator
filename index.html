@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generate strong, random passwords instantly. Free online password generator with length, symbols, digits, and security options. Works 100% in your browser.">
-  <title>Password Generator Online – GetPassNow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Free secure password generator. Create strong, random passwords with customizable options. Works 100% in your browser." />
+  <title>Password Generator Online – GetPassnow</title>
 
-  <!-- canonical + hreflang -->
+  <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://getpassnow.net/" />
   <link rel="alternate" href="/en/" hreflang="en" />
   <link rel="alternate" href="/ru/" hreflang="ru" />
@@ -15,20 +15,17 @@
   <link rel="alternate" href="/fr/" hreflang="fr" />
   <link rel="alternate" href="/" hreflang="x-default" />
 
-  <!-- assets -->
-  <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Assets -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
   <style>
     body { font-family: system-ui, sans-serif; }
     .icon-lg { font-size: 2rem; color: #0d6efd; }
     .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
-    .faq-section .accordion-button {font-weight:600;}
+    .faq-section .accordion-button { font-weight: 600; }
     .pw-output { font-family: ui-monospace, monospace; word-break: break-all; }
-    .lang-toggle .btn { padding: .25rem .5rem; }
-
-    /* Navbar mobile tweaks */
     .navbar-toggler { border: 0; }
     .navbar-toggler:focus { box-shadow: none; }
     .navbar .nav-link { padding: .5rem .75rem; }
@@ -37,28 +34,25 @@
 </head>
 <body>
 
-<header>
-  <!-- navbar-light важно для видимого «бургера» -->
+  <!-- Header / Brand -->
   <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
     <div class="container">
       <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
 
-      <!-- Burger -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link" href="#howto">How it works</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         </ul>
 
-        <!-- Language dropdown (отдельные страницы локалей) -->
+        <!-- Language dropdown (separate locale pages) -->
         <div class="dropdown">
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle w-100 w-md-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             English
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -72,362 +66,382 @@
       </div>
     </div>
   </nav>
-</header>
 
-<section class="container mb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-10">
-      <div class="text-center mb-4">
-        <h2 class="mb-2">Generate a strong password in seconds</h2>
-        <p class="text-muted mb-0">Fast, secure, and free. Your password is generated locally in your browser and never sent to a server.</p>
-      </div>
+  <!-- Hero -->
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1 class="mb-2">Generate a strong password in seconds</h1>
+        <p class="text-muted mb-4">Fast, secure, and free. Your password is generated locally in your browser and never sent to a server.</p>
 
-      <!-- Generator + Calculator -->
-      <div class="bg-white shadow p-4 rounded">
-        <form id="pw-form" onsubmit="return false;">
-          <div class="mb-3">
-            <label for="length" class="form-label fw-semibold">Password length</label>
-            <input type="range" class="form-range" id="length" min="8" max="64" value="16">
-            <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
-          </div>
+        <!-- Generator + Calculator -->
+        <div class="bg-white shadow p-4 rounded text-start">
+          <form id="pw-form" onsubmit="return false;">
+            <div class="mb-3">
+              <label for="length" class="form-label fw-semibold">Password length</label>
+              <input type="range" class="form-range" id="length" min="8" max="64" value="16">
+              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+            </div>
 
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="lower" checked>
-                <label class="form-check-label" for="lower">Lowercase (a–z)</label>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="lower" checked>
+                  <label class="form-check-label" for="lower">Lowercase (a–z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">Uppercase (A–Z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">Digits (0–9)</label>
+                </div>
               </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="upper" checked>
-                <label class="form-check-label" for="upper">Uppercase (A–Z)</label>
-              </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="digits" checked>
-                <label class="form-check-label" for="digits">Digits (0–9)</label>
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="symbols" checked>
+                  <label class="form-check-label" for="symbols">Symbols (!@#$…)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="noRepeat">
+                  <label class="form-check-label" for="noRepeat">No repeated characters</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                  <label class="form-check-label" for="excludeAmbiguous">Exclude ambiguous (O/0, l/1)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                  <label class="form-check-label" for="excludeBrackets">Exclude brackets (){}[] &lt;&gt;</label>
+                </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="symbols" checked>
-                <label class="form-check-label" for="symbols">Symbols (!@#$…)</label>
-              </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="noRepeat">
-                <label class="form-check-label" for="noRepeat">No repeated characters</label>
-              </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
-                <label class="form-check-label" for="excludeAmbiguous">Exclude ambiguous (O/0, l/1)</label>
-              </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="excludeBrackets">
-                <label class="form-check-label" for="excludeBrackets">Exclude brackets (){}[] &lt;&gt;</label>
-              </div>
-            </div>
-          </div>
 
-          <div class="input-group my-3">
-            <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Your password will appear here" aria-label="Generated password" readonly>
-            <button class="btn btn-primary" type="button" id="generate">Generate</button>
-            <button class="btn btn-outline-secondary" type="button" id="copy">Copy</button>
-          </div>
-          <div class="small text-muted">Tip: aim for 16+ characters for most accounts.</div>
-        </form>
-
-        <!-- Calculator: strength, entropy, time to crack -->
-        <hr class="my-4">
-        <div id="calc" class="row g-3 align-items-center">
-          <div class="col-md-4">
-            <div class="fw-semibold mb-1">Strength</div>
-            <div class="progress" role="progressbar" aria-label="Password strength" aria-valuemin="0" aria-valuemax="100">
-              <div id="strengthBar" class="progress-bar" style="width: 0%"></div>
+            <div class="input-group my-3">
+              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Your password will appear here" aria-label="Generated password" readonly>
+              <button class="btn btn-primary" type="button" id="generate">Generate</button>
+              <button class="btn btn-outline-secondary" type="button" id="copy">Copy</button>
             </div>
-            <div id="strengthLabel" class="mt-1 small text-muted">—</div>
-          </div>
-          <div class="col-md-4">
-            <div class="fw-semibold mb-1">Entropy</div>
-            <div id="entropy" class="small">—</div>
-            <div class="text-muted small">Estimated bits of randomness based on your options.</div>
-          </div>
-          <div class="col-md-4">
-            <div class="fw-semibold mb-1">Estimated time to crack</div>
-            <div id="crack" class="small">—</div>
-            <div class="text-muted small">Assuming 1 billion guesses per second, average case.</div>
+            <div class="small text-muted">Tip: aim for 16+ characters for most accounts.</div>
+          </form>
+
+          <hr class="my-4">
+          <div id="calc" class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Strength</div>
+              <div class="progress" role="progressbar" aria-label="Password strength" aria-valuemin="0" aria-valuemax="100">
+                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Entropy</div>
+              <div id="entropy" class="small">—</div>
+              <div class="text-muted small">Estimated bits of randomness based on your options.</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Estimated time to crack</div>
+              <div id="crack" class="small">—</div>
+              <div class="text-muted small">Assuming 1 billion guesses per second, average case.</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="howto" class="bg-light py-5">
-  <div class="container">
-    <h3 class="text-center mb-5">How it works</h3>
-    <div class="row g-4 text-center">
-      <div class="col-md-4">
-        <div class="feature-card">
-          <i class="bi bi-sliders icon-lg"></i>
-          <h5 class="mt-3">Choose options</h5>
-          <p>Select password length and toggle lowercase, uppercase, numbers, or symbols.</p>
+  <!-- How it works -->
+  <section id="howto" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">How it works</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-sliders icon-lg"></i>
+            <h3 class="mt-3 h5">Choose options</h3>
+            <p>Select password length and toggle lowercase, uppercase, numbers, or symbols.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <i class="bi bi-lightning-charge icon-lg"></i>
-          <h5 class="mt-3">Click generate</h5>
-          <p>Press the generate button and the tool instantly builds a random secure string.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-lightning-charge icon-lg"></i>
+            <h3 class="mt-3 h5">Click generate</h3>
+            <p>Press the generate button and the tool instantly builds a random secure string.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <i class="bi bi-clipboard-check icon-lg"></i>
-          <h5 class="mt-3">Copy and use</h5>
-          <p>Copy your password to the clipboard and use it wherever you need credentials.</p>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-check icon-lg"></i>
+            <h3 class="mt-3 h5">Copy and use</h3>
+            <p>Copy your password to the clipboard and use it wherever you need credentials.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="about" class="container py-5">
-  <h3 class="text-center mb-4">Why use a password generator?</h3>
-  <p>
-    A password generator helps you create <strong>strong, random passwords</strong> instantly. Human-made
-    passwords often repeat patterns, include personal details, or use predictable sequences.
-    A generator avoids these traps and produces strings that meet strict rules for security.
-    You decide the length — from 8 to 64 characters — and whether to include uppercase, lowercase,
-    digits, or symbols. Options such as <em>no repeated characters</em>, <em>exclude ambiguous</em> (O/0, l/1),
-    or <em>exclude brackets</em> make it possible to adapt passwords to specific websites.
-  </p>
-  <p>
-    This <strong>free password generator</strong> works entirely in your browser. Nothing is stored or
-    transmitted. That means you can generate a password while offline, confident that no third
-    party has access. Need something short for an outdated form? Generate 12 characters. Creating
-    a new account? Go with 16 or more. Protecting banking or work accounts? Choose 20+ characters.
-    The longer the password, the stronger the protection.
-  </p>
-  <h4 class="mt-4">What makes a strong password?</h4>
-  <p>
-    Strength comes from <strong>length</strong> and <strong>entropy</strong>. Six-letter words or common names are
-    trivial to guess, while 16-character strings mixing different character sets create billions
-    of possible combinations. Avoid dictionary words, birthdays, and phrases tied to your identity.
-    If you prefer easier typing, a passphrase built from random words can be both practical and secure.
-  </p>
-  <h4 class="mt-4">Best practices</h4>
-  <p>
-    Use a different password for every account. If one service is hacked, others remain protected.
-    Enable two-factor authentication (2FA) wherever available. Combine this generator with a
-    reputable password manager to save, organize, and autofill your credentials across devices.
-    That way, you won’t need to remember dozens of random strings, yet each login stays unique.
-  </p>
-</section>
+  <!-- About -->
+  <section id="about" class="container py-5">
+    <h2 class="text-center mb-4">Why use a password generator?</h2>
+    <p>
+      A password generator helps you create <strong>strong, random passwords</strong> instantly. Human-made
+      passwords often repeat patterns, include personal details, or use predictable sequences.
+      A generator avoids these traps and produces strings that meet strict rules for security.
+      You decide the length — from 8 to 64 characters — and whether to include uppercase, lowercase,
+      digits, or symbols. Options such as <em>no repeated characters</em>, <em>exclude ambiguous</em> (O/0, l/1),
+      or <em>exclude brackets</em> make it possible to adapt passwords to specific websites.
+    </p>
+    <p>
+      This <strong>free password generator</strong> works entirely in your browser. Nothing is stored or
+      transmitted. That means you can generate a password while offline, confident that no third
+      party has access. Need something short for an outdated form? Generate 12 characters. Creating
+      a new account? Go with 16 or more. Protecting banking or work accounts? Choose 20+ characters.
+      The longer the password, the stronger the protection.
+    </p>
+    <h3 class="mt-4 h5">What makes a strong password?</h3>
+    <p>
+      Strength comes from <strong>length</strong> and <strong>entropy</strong>. Six-letter words or common names are
+      trivial to guess, while 16-character strings mixing different character sets create billions
+      of possible combinations. Avoid dictionary words, birthdays, and phrases tied to your identity.
+      If you prefer easier typing, a passphrase built from random words can be both practical and secure.
+    </p>
+    <h3 class="mt-4 h5">Best practices</h3>
+    <p>
+      Use a different password for every account. If one service is hacked, others remain protected.
+      Enable two-factor authentication (2FA) wherever available. Combine this generator with a
+      reputable password manager to save, organize, and autofill your credentials across devices.
+      That way, you won’t need to remember dozens of random strings, yet each login stays unique.
+    </p>
+  </section>
 
-<section id="faq" class="faq-section bg-light py-5">
-  <div class="container">
-    <h3 class="text-center mb-4">Frequently Asked Questions</h3>
-    <div class="accordion" id="faqAccordion">
+  <!-- FAQ -->
+  <section id="faq" class="faq-section bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q1h">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
-            Can I use this generator offline?
-          </button>
-        </h2>
-        <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes. Once the page has loaded in your browser, the generator does not need an internet
-            connection. All logic runs locally, so you can even switch off your Wi-Fi and still
-            produce new passwords.
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q1h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              Can I use this generator offline?
+            </button>
+          </h3>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes. Once the page has loaded in your browser, the generator does not need an internet
+              connection. All logic runs locally, so you can even switch off your Wi-Fi and still
+              produce new passwords.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q2h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
-            Can I decide the exact length of my password?
-          </button>
-        </h2>
-        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Absolutely. The slider lets you pick anywhere from 8 to 64 characters. Many sites allow 16,
-            but for accounts involving money or sensitive data it is smart to aim for 20+.
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q2h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              Can I decide the exact length of my password?
+            </button>
+          </h3>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Absolutely. The slider lets you pick anywhere from 8 to 64 characters. Many sites allow 16,
+              but for accounts involving money or sensitive data it is smart to aim for 20+.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q3h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
-            Can I exclude confusing characters?
-          </button>
-        </h2>
-        <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes. You can exclude characters that often get mixed up, like O and 0 or l and 1. This helps
-            when you need to read a password aloud or type it manually without mistakes.
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q3h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              Can I exclude confusing characters?
+            </button>
+          </h3>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes. You can exclude characters that often get mixed up, like O and 0 or l and 1. This helps
+              when you need to read a password aloud or type it manually without mistakes.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q4h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
-            Can I prevent repeated symbols?
-          </button>
-        </h2>
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q4h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              Can I prevent repeated symbols?
+            </button>
+          </h3>
         <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes. Enable the option “no repeated characters” and the generator will guarantee each symbol
-            in your password appears only once. This can be helpful when following strict security policies.
+            <div class="accordion-body">
+              Yes. Enable the option “no repeated characters” and the generator will guarantee each symbol
+              in your password appears only once. This can be helpful when following strict security policies.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q5h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
-            Can I rely on this for sensitive accounts?
-          </button>
-        </h2>
-        <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes. The generator uses cryptographic randomness built into modern browsers. Combine a long
-            password from here with two-factor authentication, and it is strong enough for banking,
-            work systems, or personal email.
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q5h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+              Can I rely on this for sensitive accounts?
+            </button>
+          </h3>
+          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes. The generator uses cryptographic randomness built into modern browsers. Combine a long
+              password from here with two-factor authentication, and it is strong enough for banking,
+              work systems, or personal email.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="q6h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
-            Can I store these passwords on your site?
-          </button>
-        </h2>
-        <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            No. This tool does not store or transmit any generated password. Once you close or refresh
-            the page, the password disappears. To keep them safe, use a trusted password manager.
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q6h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+              Can I store these passwords on your site?
+            </button>
+          </h3>
+          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              No. This tool does not store or transmit any generated password. Once you close or refresh
+              the page, the password disappears. To keep them safe, use a trusted password manager.
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="bg-dark text-white text-center py-4">
-  <div class="container">
-    <p class="mb-1">© 2025 GetPassnow. All rights reserved.</p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">© 2025 GetPassnow. All rights reserved.</p>
+    </div>
+  </footer>
 
-<!-- Generator + Calculator script -->
-<script>
-  // --- Generator + Calculator ---
-  (() => {
-    const $ = (s) => document.querySelector(s);
-    const length = $('#length');
-    const lower = $('#lower');
-    const upper = $('#upper');
-    const digits = $('#digits');
-    const symbols = $('#symbols');
-    const noRepeat = $('#noRepeat');
-    const excludeAmbiguous = $('#excludeAmbiguous');
-    const excludeBrackets = $('#excludeBrackets');
-    const output = $('#password');
-    const genBtn = $('#generate');
-    const copyBtn = $('#copy');
-    const bar = $('#strengthBar');
-    const label = $('#strengthLabel');
-    const entropyEl = $('#entropy');
-    const crackEl = $('#crack');
+  <!-- Generator + Calculator -->
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s);
+      const length = $('#length');
+      const lower = $('#lower');
+      const upper = $('#upper');
+      const digits = $('#digits');
+      const symbols = $('#symbols');
+      const noRepeat = $('#noRepeat');
+      const excludeAmbiguous = $('#excludeAmbiguous');
+      const excludeBrackets = $('#excludeBrackets');
+      const output = $('#password');
+      const genBtn = $('#generate');
+      const copyBtn = $('#copy');
+      const bar = $('#strengthBar');
+      const label = $('#strengthLabel');
+      const entropyEl = $('#entropy');
+      const crackEl = $('#crack');
 
-    const sets = {
-      lower: 'abcdefghijklmnopqrstuvwxyz',
-      upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      digits: '0123456789',
-      symbols: "!@#$%^&*_-+=~?.,:;|/\\'\"`(){}[]<>",
-    };
-    const ambiguous = new Set(['O','0','l','1','I']);
-    const brackets = new Set(['(',')','{','}','[',']','<','>']);
+      const sets = {
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        digits: '0123456789',
+        symbols: "!@#$%^&*_-+=~?.,:;|/\\\\'\\\"`(){}[]<>",
+      };
+      const ambiguous = new Set(['O','0','l','1','I']);
+      const brackets = new Set(['(',')','{','}','[',']','<','>']);
 
-    function buildPool(){
-      let pool = '';
-      if (lower.checked) pool += sets.lower;
-      if (upper.checked) pool += sets.upper;
-      if (digits.checked) pool += sets.digits;
-      if (symbols.checked) pool += sets.symbols;
-      let arr = Array.from(new Set(pool.split('')));
-      if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
-      if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
-      return arr.join('');
-    }
-
-    function cryptoRandom(n){
-      const buf = new Uint32Array(n);
-      (crypto || window.crypto).getRandomValues(buf);
-      return buf;
-    }
-
-    function humanTime(seconds){
-      const units = [ ['year',365*24*3600], ['day',24*3600], ['hour',3600], ['min',60], ['sec',1] ];
-      for (const [name, s] of units){ if (seconds >= s) { const v=Math.floor(seconds/s); return v+' '+name+(v>1?'s':''); } }
-      return '< 1 sec';
-    }
-
-    function calcStats(){
-      const L = parseInt(length.value,10)||16;
-      const pool = buildPool();
-      const N = pool.length;
-      if (!N || L<=0){ bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—'; entropyEl.textContent='—'; crackEl.textContent='—'; return; }
-      let entropyBits = 0; let keyspace = 0n;
-      if (noRepeat.checked){ keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
-      else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
-      const guessesPerSec = 1e9; // 1 billion
-      let seconds;
-      try{ const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
-      catch{ seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
-      let pct=0, text='', cls='bg-danger';
-      if (entropyBits < 28){ pct=15; text='Very weak'; cls='bg-danger'; }
-      else if (entropyBits < 36){ pct=30; text='Weak'; cls='bg-warning'; }
-      else if (entropyBits < 60){ pct=60; text='Reasonable'; cls='bg-info'; }
-      else if (entropyBits < 128){ pct=85; text='Strong'; cls='bg-success'; }
-      else { pct=100; text='Very strong'; cls='bg-success'; }
-      bar.style.width = pct + '%'; bar.className = 'progress-bar ' + cls; label.textContent = text + ' · ' + L + ' chars · pool ' + N;
-      entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
-      crackEl.textContent = humanTime(seconds);
-    }
-
-    function generate(){
-      const L = parseInt(length.value,10)||16;
-      const pool = buildPool();
-      if (!pool){ output.value=''; calcStats(); return; }
-      const arr = pool.split('');
-      if (noRepeat.checked && L > arr.length){ output.value='Increase pool or turn off no repeats'; calcStats(); return; }
-      const rnd = cryptoRandom(L); const used = new Set(); const res = [];
-      for (let i=0;i<L;i++){
-        let idx = rnd[i] % arr.length;
-        if (noRepeat.checked){ let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; } used.add(idx); }
-        res.push(arr[idx]);
+      function buildPool() {
+        let pool = '';
+        if (lower.checked) pool += sets.lower;
+        if (upper.checked) pool += sets.upper;
+        if (digits.checked) pool += sets.digits;
+        if (symbols.checked) pool += sets.symbols;
+        let arr = Array.from(new Set(pool.split('')));
+        if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
+        if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
+        return arr.join('');
       }
-      output.value = res.join('');
+
+      function cryptoRandom(n){
+        const buf = new Uint32Array(n);
+        (crypto || window.crypto).getRandomValues(buf);
+        return buf;
+      }
+
+      function humanTime(seconds){
+        const units = [['year',31536000],['day',86400],['hour',3600],['min',60],['sec',1]];
+        for (const [name,s] of units) if (seconds >= s) {
+          const v = Math.floor(seconds/s);
+          return v+' '+name+(v>1?'s':'');
+        }
+        return '< 1 sec';
+      }
+
+      function calcStats(){
+        const L = parseInt(length.value,10)||16;
+        const pool = buildPool();
+        const N = pool.length;
+        if (!N || L<=0){
+          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
+          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+        }
+        let entropyBits = 0; let keyspace = 0n;
+        if (noRepeat.checked){ keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
+        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        const guessesPerSec = 1e9;
+        let seconds;
+        try{ const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
+        catch{ seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+
+        let pct=0, text='', cls='bg-danger';
+        if (entropyBits < 28){ pct=15; text='Very weak'; cls='bg-danger'; }
+        else if (entropyBits < 36){ pct=30; text='Weak'; cls='bg-warning'; }
+        else if (entropyBits < 60){ pct=60; text='Reasonable'; cls='bg-info'; }
+        else if (entropyBits < 128){ pct=85; text='Strong'; cls='bg-success'; }
+        else { pct=100; text='Very strong'; cls='bg-success'; }
+        bar.style.width = pct + '%';
+        bar.className = 'progress-bar ' + cls;
+        label.textContent = text + ' · ' + L + ' chars · pool ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
+        crackEl.textContent = humanTime(seconds);
+      }
+
+      function generate(){
+        const L = parseInt(length.value,10)||16;
+        const pool = buildPool();
+        if (!pool){ output.value=''; calcStats(); return; }
+        const arr = pool.split('');
+        if (noRepeat.checked && L > arr.length){
+          output.value='Increase pool or turn off no repeats'; calcStats(); return;
+        }
+        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        for (let i=0;i<L;i++){
+          let idx = rnd[i] % arr.length;
+          if (noRepeat.checked){
+            let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; }
+            used.add(idx);
+          }
+          res.push(arr[idx]);
+        }
+        output.value = res.join('');
+        calcStats();
+      }
+
+      ['change','input'].forEach(ev=>{
+        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
+      });
+      genBtn.addEventListener('click', generate);
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) return;
+        try {
+          await navigator.clipboard.writeText(output.value);
+          copyBtn.textContent='Copied!';
+          setTimeout(()=>copyBtn.textContent='Copy', 1000);
+        } catch(e){
+          output.select(); document.execCommand('copy');
+        }
+      });
       calcStats();
-    }
+    })();
+  </script>
 
-    ['change','input'].forEach(ev=>{
-      [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
-    });
-    genBtn.addEventListener('click', generate);
-    copyBtn.addEventListener('click', async () => {
-      if (!output.value) return;
-      try { await navigator.clipboard.writeText(output.value); copyBtn.textContent='Copied!'; setTimeout(()=>copyBtn.textContent='Copy',1000);} catch(e){ output.select(); document.execCommand('copy'); }
-    });
-    calcStats();
-  })();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

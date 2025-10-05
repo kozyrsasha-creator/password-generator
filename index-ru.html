@@ -1,0 +1,240 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;title&gt;GetPassnow - Онлайн генератор паролей&lt;/title&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+
+  &lt;!-- Добавлены для SEO и многоязычности --&gt;
+  &lt;link rel="canonical" href="https://getpassnow.com/" hreflang="en"&gt;
+  &lt;link rel="alternate" href="https://getpassnow.com/ru/" hreflang="ru"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="logo"&gt;GetPassnow&lt;/div&gt;
+
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#how-it-works"&gt;Как это работает&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#about"&gt;О сервисе&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#faq"&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="language-selector"&gt;
+      &lt;button class="language-button"&gt;
+        &lt;span&gt;Русский&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class="language-dropdown"&gt;
+        &lt;a href="/"&gt;English&lt;/a&gt;
+        &lt;a href="/ru/"&gt;Русский&lt;/a&gt;
+        &lt;a href="/de/"&gt;Deutsch&lt;/a&gt;
+        &lt;a href="/es/"&gt;Español&lt;/a&gt;
+        &lt;a href="/fr/"&gt;Français&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;section class="hero"&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Сгенерируйте сильный пароль за секунды&lt;/h1&gt;
+    &lt;p&gt;Быстро, безопасно и бесплатно. Ваш пароль генерируется локально в вашем браузере и никогда не отправляется на сервер.&lt;/p&gt;
+
+    &lt;div class="generator"&gt;
+      &lt;div class="options"&gt;
+        &lt;label&gt;Длина пароля&lt;/label&gt;
+        &lt;input type="range" min="8" max="64" value="16"&gt;
+        &lt;span&gt;16&lt;/span&gt;
+
+        &lt;div class="checkboxes"&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox" checked&gt;
+            Строчные буквы (a–z)
+          &lt;/label&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox" checked&gt;
+            Прописные буквы (A–Z)
+          &lt;/label&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox" checked&gt;
+            Цифры (0–9)
+          &lt;/label&gt;
+
+          &lt;label&gt;
+            &lt;input type="checkbox" checked&gt;
+            Символы (!@#$…)
+          &lt;/label&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox"&gt;
+            Без повторяющихся символов
+          &lt;/label&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox"&gt;
+            Исключить неоднозначные (O/0, l/1)
+          &lt;/label&gt;
+          &lt;label&gt;
+            &lt;input type="checkbox"&gt;
+            Исключить скобки (){}[] &lt;&gt;
+          &lt;/label&gt;
+        &lt;/div&gt;
+
+        &lt;div class="buttons"&gt;
+          &lt;button&gt;Сгенерировать&lt;/button&gt;
+          &lt;button&gt;Копировать&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;p class="tip"&gt;Совет: стремитесь к 16+ символам для большинства аккаунтов.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="stats"&gt;
+        &lt;div&gt;
+          &lt;h3&gt;Сила&lt;/h3&gt;
+          &lt;progress value="0" max="100"&gt;&lt;/progress&gt;
+          &lt;p&gt;—&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+          &lt;h3&gt;Энтропия&lt;/h3&gt;
+          &lt;p&gt;—&lt;/p&gt;
+          &lt;p&gt;Оценочные биты случайности на основе ваших опций.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt;
+          &lt;h3&gt;Оценочное время взлома&lt;/h3&gt;
+          &lt;p&gt;—&lt;/p&gt;
+          &lt;p&gt;Предполагая 1 миллиард догадок в секунду, средний случай.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id="how-it-works" class="how-it-works"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2&gt;Как это работает&lt;/h2&gt;
+
+    &lt;div class="steps"&gt;
+      &lt;div class="step"&gt;
+        &lt;img src="step1.svg" alt="Choose options"&gt;
+        &lt;h3&gt;Выберите опции&lt;/h3&gt;
+        &lt;p&gt;Выберите длину пароля и переключите строчные, прописные, цифры или символы.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="step"&gt;
+        &lt;img src="step2.svg" alt="Click generate"&gt;
+        &lt;h3&gt;Нажмите сгенерировать&lt;/h3&gt;
+        &lt;p&gt;Нажмите кнопку сгенерировать, и инструмент мгновенно создаст случайную безопасную строку.&lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class="step"&gt;
+        &lt;img src="step3.svg" alt="Copy and use"&gt;
+        &lt;h3&gt;Скопируйте и используйте&lt;/h3&gt;
+        &lt;p&gt;Скопируйте пароль в буфер обмена и используйте его там, где нужны учетные данные.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id="about" class="about"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2&gt;Почему использовать генератор паролей?&lt;/h2&gt;
+    &lt;p&gt;Генератор паролей помогает создавать сильные, случайные пароли мгновенно. Пароли, созданные людьми, часто повторяют шаблоны, включают личные детали или используют предсказуемые последовательности. Генератор избегает этих ловушек и производит строки, соответствующие строгим правилам безопасности. Вы решаете длину — от 8 до 64 символов — и включать ли прописные, строчные буквы, цифры или символы. Опции, такие как без повторяющихся символов, исключить неоднозначные (O/0, l/1) или исключить скобки, позволяют адаптировать пароли к конкретным сайтам.&lt;/p&gt;
+
+    &lt;p&gt;Этот бесплатный онлайн генератор паролей работает полностью в вашем браузере. Ничего не хранится или не передается. Это значит, что вы можете генерировать пароль оффлайн, уверенные, что третьи лица не имеют доступа. Нужно что-то короткое для устаревшей формы? Сгенерируйте 12 символов. Создаете новый аккаунт? Выберите 16 или больше. Защищаете банковские или рабочие аккаунты? Выберите 20+ символов. Чем длиннее пароль, тем сильнее защита.&lt;/p&gt;
+
+    &lt;h2&gt;Что делает пароль сильным?&lt;/h2&gt;
+    &lt;p&gt;Сила исходит от длины и энтропии. Шестибуквенные слова или обычные имена тривиальны для угадывания, в то время как 16-символьные строки, смешивающие разные наборы символов, создают миллиарды возможных комбинаций. Избегайте словарных слов, дней рождения и фраз, связанных с вашей личностью. Если предпочитаете легкость ввода, passphrase из случайных слов может быть как практичным, так и безопасным.&lt;/p&gt;
+
+    &lt;h2&gt;Лучшие практики&lt;/h2&gt;
+    &lt;p&gt;Используйте разный пароль для каждого аккаунта. Если один сервис взломан, другие остаются защищенными. Включите двухфакторную аутентификацию (2FA) везде, где возможно. Комбинируйте этот генератор с надежным менеджером паролей для сохранения, организации и автозаполнения ваших учетных данных на устройствах. Таким образом, вам не нужно помнить десятки случайных строк, но каждый логин остается уникальным.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section id="faq" class="faq"&gt;
+  &lt;div class="container"&gt;
+    &lt;h2&gt;Часто задаваемые вопросы&lt;/h2&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я использовать этот генератор оффлайн?&lt;/h3&gt;
+      &lt;p&gt;Да. Как только страница загрузилась в вашем браузере, генератор не нуждается в интернет-соединении. Вся логика работает локально, так что вы можете даже отключить Wi-Fi и все равно создавать новые пароли.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я выбрать точную длину пароля?&lt;/h3&gt;
+      &lt;p&gt;Абсолютно. Слайдер позволяет выбрать от 8 до 64 символов. Многие сайты позволяют 16, но для аккаунтов с деньгами или чувствительными данными разумно стремиться к 20+.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я исключить confusing символы?&lt;/h3&gt;
+      &lt;p&gt;Да. Вы можете исключить символы, которые часто путают, такие как O и 0 или l и 1. Это помогает, когда нужно читать пароль вслух или вводить вручную без ошибок.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я предотвратить повторяющиеся символы?&lt;/h3&gt;
+      &lt;p&gt;Да. Включите опцию «без повторяющихся символов», и генератор гарантирует, что каждый символ в пароле появляется только один раз. Это может быть полезно при соблюдении строгих политик безопасности.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я полагаться на это для чувствительных аккаунтов?&lt;/h3&gt;
+      &lt;p&gt;Да. Генератор использует криптографическую случайность, встроенную в современные браузеры. Комбинируйте длинный пароль отсюда с двухфакторной аутентификацией, и он достаточно силен для банков, рабочих систем или личной почты.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="faq-item"&gt;
+      &lt;h3&gt;Могу ли я хранить эти пароли на вашем сайте?&lt;/h3&gt;
+      &lt;p&gt;Нет. Этот инструмент не хранит и не передает сгенерированные пароли. Как только вы закроете или обновите страницу, пароль исчезает. Чтобы хранить их безопасно, используйте доверенный менеджер паролей.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;footer&gt;
+  &lt;div class="container"&gt;
+    &lt;p&gt;© 2025 GetPassnow. Все права защищены.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;

@@ -1,1 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kostenloser sicherer Passwort-Generator. Erstellen Sie starke, zufällige Passwörter mit anpassbaren Optionen direkt in Ihrem Browser." />
+  <title>Passwort Generator Online – GetPassnow</title>
 
+  <!-- canonical + hreflang -->
+  <link rel="canonical" href="https://getpassnow.net/de/" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="en" />
+  <link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
+  <link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
+  <link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
+  <link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .icon-lg { font-size: 2rem; color: #0d6efd; }
+    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
+    .faq-section .accordion-button { font-weight: 600; }
+    .pw-output { font-family: ui-monospace, monospace; word-break: break-all; }
+    .navbar-toggler { border: 0; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar .nav-link { padding: .5rem .75rem; }
+    .dropdown-toggle { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="#howto">Wie es funktioniert</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Über</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Deutsch
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="https://getpassnow.net/">English</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/ru/">Русский</a></li>
+            <li><a class="dropdown-item active" href="https://getpassnow.net/de/">Deutsch</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/es/">Español</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1 class="mb-2">In Sekunden ein starkes Passwort generieren</h1>
+        <p class="text-muted mb-4">Schnell, sicher und kostenlos. Ihr Passwort wird lokal im Browser erzeugt und niemals an einen Server gesendet.</p>
+
+        <div class="bg-white shadow p-4 rounded text-start">
+          <form id="pw-form" onsubmit="return false;">
+            <div class="mb-3">
+              <label for="length" class="form-label fw-semibold">Passwortlänge</label>
+              <input type="range" class="form-range" id="length" min="8" max="64" value="16">
+              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+            </div>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="lower" checked>
+                  <label class="form-check-label" for="lower">Kleinbuchstaben (a–z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">Großbuchstaben (A–Z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">Zahlen (0–9)</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="symbols" checked>
+                  <label class="form-check-label" for="symbols">Sonderzeichen (!@#$…)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="noRepeat">
+                  <label class="form-check-label" for="noRepeat">Keine Wiederholungen</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                  <label class="form-check-label" for="excludeAmbiguous">Ähnliche Zeichen ausschließen (O/0, l/1)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                  <label class="form-check-label" for="excludeBrackets">Klammern ausschließen (){}[] &lt;&gt;</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group my-3">
+              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Ihr Passwort erscheint hier" aria-label="Generiertes Passwort" readonly>
+              <button class="btn btn-primary" type="button" id="generate">Generieren</button>
+              <button class="btn btn-outline-secondary" type="button" id="copy">Kopieren</button>
+            </div>
+            <div class="small text-muted">Tipp: Für mehr Sicherheit 16+ Zeichen wählen.</div>
+          </form>
+
+          <hr class="my-4">
+          <div id="calc" class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Stärke</div>
+              <div class="progress" role="progressbar" aria-label="Passwortstärke" aria-valuemin="0" aria-valuemax="100">
+                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Entropie</div>
+              <div id="entropy" class="small">—</div>
+              <div class="text-muted small">Ungefähre Zufälligkeit basierend auf Optionen.</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Geschätzte Knackzeit</div>
+              <div id="crack" class="small">—</div>
+              <div class="text-muted small">Annahme: 1 Milliarde Versuche pro Sekunde.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="howto" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Wie es funktioniert</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-sliders icon-lg"></i>
+            <h3 class="mt-3 h5">Optionen wählen</h3>
+            <p>Passen Sie Länge und Zeichensätze an (Klein-, Großbuchstaben, Zahlen, Symbole).</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-lightning-charge icon-lg"></i>
+            <h3 class="mt-3 h5">Generieren</h3>
+            <p>Ein Klick reicht – das Tool erstellt sofort ein starkes zufälliges Passwort.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-check icon-lg"></i>
+            <h3 class="mt-3 h5">Kopieren & einsetzen</h3>
+            <p>Kopieren Sie es ins Clipboard und verwenden Sie es dort, wo Sie es benötigen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="container py-5">
+    <h2 class="text-center mb-4">Warum ein Passwort-Generator?</h2>
+    <p>
+      Ein Passwort-Generator hilft Ihnen, <strong>starke, zufällige Passwörter</strong> zu erzeugen, anstatt sich Kombinationen auszudenken, die oft Muster enthalten. Menschen tendieren dazu, leicht einprägsame Wörter, Jahreszahlen oder Begriffe zu verwenden – genau die Kandidaten, die bei Brute-Force-Angriffen zuerst getestet werden.
+    </p>
+    <p>
+      Dieser <strong>kostenlose Generator</strong> arbeitet vollständig lokal im Browser – nichts wird gespeichert oder übertragen. So können Sie ihn auch offline nutzen, ohne dass jemand Zugriff auf Ihre Passwörter hat. Für eine neue Anmeldung reicht 16 Zeichen, für sensible Konten 20+ Zeichen.
+    </p>
+    <h3 class="mt-4 h5">Was macht ein sicheres Passwort aus?</h3>
+    <p>
+      Sicherheit entsteht durch <strong>Länge</strong> und <strong>Entropie</strong>. Ein Passwort mit 16 Zeichen aus verschiedenen Zeichenklassen erzeugt Billionen möglicher Kombinationen. Vermeiden Sie Wörter, die im Wörterbuch stehen, Geburtstage oder Wiederholungen.
+    </p>
+    <h3 class="mt-4 h5">Best Practices</h3>
+    <p>
+      Verwenden Sie für jedes Konto ein eigenes Passwort. Aktivieren Sie Zwei-Faktor-Authentifizierung, wo es möglich ist. Speichern Sie Ihre Passwörter sicher mit einem Passwort-Manager – so müssen Sie sich keine zufälligen Zeichen lernen, aber jede Anmeldung bleibt einzigartig.
+    </p>
+  </section>
+
+  <section id="faq" class="faq-section bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Häufige Fragen (FAQ)</h2>
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q1h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              Kann ich den Generator offline benutzen?
+            </button>
+          </h3>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ja. Sobald die Seite geladen ist, läuft die Logik lokal. Sie können auch ohne Internet ein Passwort generieren.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q2h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              Kann ich eine genaue Länge festlegen?
+            </button>
+          </h3>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Natürlich. Der Schieberegler erlaubt Längen von 8 bis 64 Zeichen. Für Finanzkonten ist 20+ empfehlenswert.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q3h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              Kann ich bestimmte Zeichen ausschließen?
+            </button>
+          </h3>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ja – Sie können ähnliche Zeichen (z. B. O/0, l/1) oder Klammern ausschließen, um Verwirrung zu vermeiden.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q4h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              Kann ich Wiederholungen verbieten?
+            </button>
+          </h3>
+          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ja – aktivieren Sie „Keine Wiederholungen“, dann wird jeder Charakter nur einmal verwendet.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q5h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+              Ist dieser Generator für sensible Konten geeignet?
+            </button>
+          </h3>
+          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Ja. Der Generator verwendet kryptografisch sichere Zufallswerte im Browser. In Kombination mit langen Passwörtern und 2FA ist das Niveau hoch genug für Bank-, Arbeits- oder E-Mail-Konten.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q6h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+              Speichert Ihr Server meine Passwörter?
+            </button>
+          </h3>
+          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nein. Dieser Dienst speichert oder sendet nichts. Nach dem Aktualisieren oder Schließen verschwindet das generierte Passwort. Für Speicherung nutzen Sie bitte einen Passwort-Manager.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">© 2025 GetPassnow. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s);
+      const length = $('#length');
+      const lower = $('#lower');
+      const upper = $('#upper');
+      const digits = $('#digits');
+      const symbols = $('#symbols');
+      const noRepeat = $('#noRepeat');
+      const excludeAmbiguous = $('#excludeAmbiguous');
+      const excludeBrackets = $('#excludeBrackets');
+      const output = $('#password');
+      const genBtn = $('#generate');
+      const copyBtn = $('#copy');
+      const bar = $('#strengthBar');
+      const label = $('#strengthLabel');
+      const entropyEl = $('#entropy');
+      const crackEl = $('#crack');
+
+      const sets = {
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        digits: '0123456789',
+        symbols: "!@#$%^&*_-+=~?.,:;|/\\\\'\\\"`(){}[]<>",
+      };
+      const ambiguous = new Set(['O','0','l','1','I']);
+      const brackets = new Set(['(',')','{','}','[',']','<','>']);
+
+      function buildPool() {
+        let pool = '';
+        if (lower.checked) pool += sets.lower;
+        if (upper.checked) pool += sets.upper;
+        if (digits.checked) pool += sets.digits;
+        if (symbols.checked) pool += sets.symbols;
+        let arr = Array.from(new Set(pool.split('')));
+        if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
+        if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
+        return arr.join('');
+      }
+
+      function cryptoRandom(n) {
+        const buf = new Uint32Array(n);
+        (crypto || window.crypto).getRandomValues(buf);
+        return buf;
+      }
+
+      function humanTime(seconds) {
+        const units = [['year',31536000],['day',86400],['hour',3600],['min',60],['sec',1]];
+        for (const [name,s] of units) {
+          if (seconds >= s) {
+            const v = Math.floor(seconds / s);
+            return v + ' ' + name + (v > 1 ? 's' : '');
+          }
+        }
+        return '< 1 sec';
+      }
+
+      function calcStats() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        const N = pool.length;
+        if (!N || L <= 0) {
+          bar.style.width = '0%'; bar.className = 'progress-bar'; label.textContent = '—';
+          entropyEl.textContent = '—'; crackEl.textContent = '—';
+          return;
+        }
+        let entropyBits = 0; let keyspace = 0n;
+        if (noRepeat.checked) {
+          keyspace = 1n;
+          for (let i=0; i<L; i++) {
+            keyspace *= BigInt(N - i);
+            entropyBits += Math.log2(N - i);
+          }
+        } else {
+          entropyBits = L * Math.log2(N);
+          keyspace = BigInt(N) ** BigInt(L);
+        }
+        const guessesPerSec = 1e9;
+        let seconds;
+        try {
+          const ksNum = Number(keyspace);
+          seconds = (ksNum / 2) / guessesPerSec;
+          if (!isFinite(seconds)) throw 0;
+        } catch {
+          seconds = Math.pow(2, Math.max(0, entropyBits - 1)) / guessesPerSec;
+        }
+
+        let pct = 0, text = '', cls = 'bg-danger';
+        if (entropyBits < 28) { pct = 15; text = 'Sehr schwach'; cls = 'bg-danger'; }
+        else if (entropyBits < 36) { pct = 30; text = 'Schwach'; cls = 'bg-warning'; }
+        else if (entropyBits < 60) { pct = 60; text = 'Akzeptabel'; cls = 'bg-info'; }
+        else if (entropyBits < 128) { pct = 85; text = 'Stark'; cls = 'bg-success'; }
+        else { pct = 100; text = 'Sehr stark'; cls = 'bg-success'; }
+
+        bar.style.width = pct + '%';
+        bar.className = 'progress-bar ' + cls;
+        label.textContent = text + ' · ' + L + ' Zeichen · Pool ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
+        crackEl.textContent = humanTime(seconds);
+      }
+
+      function generate() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        if (!pool) {
+          output.value = '';
+          calcStats();
+          return;
+        }
+        const arr = pool.split('');
+        if (noRepeat.checked && L > arr.length) {
+          output.value = 'Erhöhe die Zeichenmenge oder deaktiviere „Keine Wiederholungen“';
+          calcStats();
+          return;
+        }
+        const rnd = cryptoRandom(L);
+        const used = new Set();
+        const res = [];
+        for (let i=0; i<L; i++){
+          let idx = rnd[i] % arr.length;
+          if (noRepeat.checked) {
+            let k = 0;
+            while (used.has(idx) && k < arr.length) {
+              idx = (idx + 1) % arr.length;
+              k++;
+            }
+            used.add(idx);
+          }
+          res.push(arr[idx]);
+        }
+        output.value = res.join('');
+        calcStats();
+      }
+
+      ['change','input'].forEach(ev => {
+        [length, lower, upper, digits, symbols, noRepeat, excludeAmbiguous, excludeBrackets].forEach(el => el.addEventListener(ev, calcStats));
+      });
+      genBtn.addEventListener('click', generate);
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) return;
+        try {
+          await navigator.clipboard.writeText(output.value);
+          copyBtn.textContent = 'Kopiert!';
+          setTimeout(() => copyBtn.textContent = 'Kopieren', 1000);
+        } catch (e) {
+          output.select();
+          document.execCommand('copy');
+        }
+      });
+      calcStats();
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,1 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Password Generator Online grátis e seguro. Crie senhas fortes e aleatórias direto no seu navegador — rápido, privado e sem enviar dados ao servidor." />
+  <title>Password Generator Online – Gerador de Senhas Grátis | GetPassnow</title>
 
+  <!-- canonical + hreflang -->
+  <link rel="canonical" href="https://getpassnow.net/pt/" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="en" />
+  <link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
+  <link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
+  <link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
+  <link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
+  <link rel="alternate" href="https://getpassnow.net/id/" hreflang="id" />
+  <link rel="alternate" href="https://getpassnow.net/pt/" hreflang="pt" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .icon-lg { font-size: 2rem; color: #0d6efd; }
+    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
+    .faq-section .accordion-button { font-weight: 600; }
+    .pw-output { font-family: ui-monospace, monospace; word-break: break-all; }
+    .navbar-toggler { border: 0; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar .nav-link { padding: .5rem .75rem; }
+    .dropdown-toggle { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="#howto">Como funciona</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- Idiomas: links absolutos -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Português (Brasil)
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="https://getpassnow.net/">English</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/ru/">Русский</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/de/">Deutsch</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/es/">Español</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/fr/">Français</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/id/">Bahasa Indonesia</a></li>
+            <li><a class="dropdown-item active" href="https://getpassnow.net/pt/">Português (Brasil)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero + Gerador -->
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1 class="mb-2">Gere uma senha forte em segundos</h1>
+        <p class="text-muted mb-4">Rápido, seguro e gratuito. Sua senha é gerada localmente no navegador e nunca é enviada a um servidor.</p>
+
+        <div class="bg-white shadow p-4 rounded text-start">
+          <form id="pw-form" onsubmit="return false;">
+            <div class="mb-3">
+              <label for="length" class="form-label fw-semibold">Comprimento da senha</label>
+              <input type="range" class="form-range" id="length" min="8" max="64" value="16">
+              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="lower" checked>
+                  <label class="form-check-label" for="lower">Letras minúsculas (a–z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">Letras maiúsculas (A–Z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">Dígitos (0–9)</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="symbols" checked>
+                  <label class="form-check-label" for="symbols">Símbolos (!@#$…)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="noRepeat">
+                  <label class="form-check-label" for="noRepeat">Sem caracteres repetidos</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                  <label class="form-check-label" for="excludeAmbiguous">Excluir ambíguos (O/0, l/1)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                  <label class="form-check-label" for="excludeBrackets">Excluir parênteses (){}[] &lt;&gt;</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group my-3">
+              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Sua senha aparecerá aqui" aria-label="Senha gerada" readonly>
+              <button class="btn btn-primary" type="button" id="generate">Gerar</button>
+              <button class="btn btn-outline-secondary" type="button" id="copy">Copiar</button>
+            </div>
+            <div class="small text-muted">Dica: para a maioria das contas, mire em 16+ caracteres.</div>
+          </form>
+
+          <hr class="my-4">
+          <div id="calc" class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Força</div>
+              <div class="progress" role="progressbar" aria-label="Força da senha" aria-valuemin="0" aria-valuemax="100">
+                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Entropia</div>
+              <div id="entropy" class="small">—</div>
+              <div class="text-muted small">Estimativa de aleatoriedade com base nas suas opções.</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Tempo estimado de quebra</div>
+              <div id="crack" class="small">—</div>
+              <div class="text-muted small">Assumindo 1 bilhão de tentativas por segundo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section id="howto" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Como funciona</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-sliders icon-lg"></i>
+            <h3 class="mt-3 h5">Escolha as opções</h3>
+            <p>Defina o comprimento e os conjuntos de caracteres: minúsculas, maiúsculas, dígitos e símbolos.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-lightning-charge icon-lg"></i>
+            <h3 class="mt-3 h5">Clique em “Gerar”</h3>
+            <p>O gerador cria instantaneamente uma sequência aleatória e segura conforme suas regras.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-check icon-lg"></i>
+            <h3 class="mt-3 h5">Copie e use</h3>
+            <p>Copie para a área de transferência e use onde precisar — sem armazenar nada em servidores.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="about" class="container py-5">
+    <h2 class="text-center mb-4">Por que usar um gerador de senhas?</h2>
+    <p>
+      Um gerador ajuda você a criar <strong>senhas fortes e aleatórias</strong> na hora. Senhas criadas manualmente costumam repetir padrões, datas ou palavras previsíveis — exatamente o que os invasores testam primeiro.
+    </p>
+    <p>
+      Este <strong>gerador gratuito</strong> funciona <strong>100% no navegador</strong>. Nada é salvo ou enviado. Você pode usá-lo até offline. Para um cadastro rápido, 12 caracteres podem bastar; para novas contas, prefira 16+; para banco ou trabalho, escolha 20+.
+    </p>
+    <h3 class="mt-4 h5">O que torna uma senha segura?</h3>
+    <p>
+      Segurança vem de <strong>comprimento</strong> e <strong>entropia</strong>. Com 16+ caracteres misturando diferentes conjuntos, você gera bilhões de combinações possíveis. Evite palavras de dicionário, dados pessoais e repetições.
+    </p>
+    <h3 class="mt-4 h5">Boas práticas</h3>
+    <p>
+      Use uma senha diferente para cada serviço. Ative a autenticação em duas etapas (2FA) sempre que possível. Guarde e preencha com um <em>gerenciador de senhas</em> confiável — você não precisa memorizar tudo, e cada login permanece único.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Perguntas frequentes</h2>
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q1h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              Posso usar o gerador offline?
+            </button>
+          </h3>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim. Depois que a página carrega, tudo roda localmente. Mesmo sem internet você consegue gerar novas senhas.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q2h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              Posso definir um comprimento exato?
+            </button>
+          </h3>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Claro. O controle permite escolher entre 8 e 64 caracteres. Para contas sensíveis, 20+ é uma ótima meta.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q3h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              Posso excluir caracteres confusos?
+            </button>
+          </h3>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim — é possível excluir caracteres ambíguos como O/0 ou l/1, e também parênteses, se algum site não permitir.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q4h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              Posso evitar repetições?
+            </button>
+          </h3>
+          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim. Ative “Sem caracteres repetidos” e o gerador garante que cada símbolo apareça apenas uma vez.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q5h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+              Serve para contas sensíveis?
+            </button>
+          </h3>
+          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim. Usamos aleatoriedade criptográfica do navegador. Com senhas longas e 2FA, o nível é adequado para banco, trabalho ou e-mail.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q6h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+              Vocês armazenam as senhas geradas?
+            </button>
+          </h3>
+          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Não. Nada é salvo ou transmitido. Ao fechar ou atualizar a página, a senha desaparece. Para guardar com segurança, use um gerenciador de senhas.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">© 2025 GetPassnow. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Gerador + Calculadora (lógica idêntica à EN) -->
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s);
+      const length = $('#length');
+      const lower = $('#lower');
+      const upper = $('#upper');
+      const digits = $('#digits');
+      const symbols = $('#symbols');
+      const noRepeat = $('#noRepeat');
+      const excludeAmbiguous = $('#excludeAmbiguous');
+      const excludeBrackets = $('#excludeBrackets');
+      const output = $('#password');
+      const genBtn = $('#generate');
+      const copyBtn = $('#copy');
+      const bar = $('#strengthBar');
+      const label = $('#strengthLabel');
+      const entropyEl = $('#entropy');
+      const crackEl = $('#crack');
+
+      const sets = {
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        digits: '0123456789',
+        symbols: "!@#$%^&*_-+=~?.,:;|/\\\\'\\\"`(){}[]<>",
+      };
+      const ambiguous = new Set(['O','0','l','1','I']);
+      const brackets = new Set(['(',')','{','}','[',']','<','>']);
+
+      function buildPool() {
+        let pool = '';
+        if (lower.checked) pool += sets.lower;
+        if (upper.checked) pool += sets.upper;
+        if (digits.checked) pool += sets.digits;
+        if (symbols.checked) pool += sets.symbols;
+        let arr = Array.from(new Set(pool.split('')));
+        if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
+        if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
+        return arr.join('');
+      }
+
+      function cryptoRandom(n) {
+        const buf = new Uint32Array(n);
+        (crypto || window.crypto).getRandomValues(buf);
+        return buf;
+      }
+
+      function humanTime(seconds) {
+        const units = [['ano',31536000],['dia',86400],['hora',3600],['min',60],['seg',1]];
+        for (const [name,s] of units) {
+          if (seconds >= s) { const v = Math.floor(seconds/s); return v + ' ' + name + (v>1?'s':''); }
+        }
+        return '< 1 seg';
+      }
+
+      function calcStats() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        const N = pool.length;
+        if (!N || L<=0) {
+          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
+          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+        }
+        let entropyBits = 0; let keyspace = 0n;
+        if (noRepeat.checked) { keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
+        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        const guessesPerSec = 1e9;
+        let seconds;
+        try { const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
+        catch { seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+
+        let pct=0, text='', cls='bg-danger';
+        if (entropyBits < 28) { pct=15; text='Muito fraca'; cls='bg-danger'; }
+        else if (entropyBits < 36) { pct=30; text='Fraca'; cls='bg-warning'; }
+        else if (entropyBits < 60) { pct=60; text='Razoável'; cls='bg-info'; }
+        else if (entropyBits < 128) { pct=85; text='Forte'; cls='bg-success'; }
+        else { pct=100; text='Muito forte'; cls='bg-success'; }
+
+        bar.style.width = pct + '%';
+        bar.className = 'progress-bar ' + cls;
+        label.textContent = text + ' · ' + L + ' caracteres · pool ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
+        crackEl.textContent = humanTime(seconds);
+      }
+
+      function generate() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        if (!pool) { output.value=''; calcStats(); return; }
+        const arr = pool.split('');
+        if (noRepeat.checked && L > arr.length) {
+          output.value='Aumente o conjunto de caracteres ou desative “Sem caracteres repetidos”';
+          calcStats(); return;
+        }
+        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        for (let i=0;i<L;i++){
+          let idx = rnd[i] % arr.length;
+          if (noRepeat.checked){ let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; } used.add(idx); }
+          res.push(arr[idx]);
+        }
+        output.value = res.join('');
+        calcStats();
+      }
+
+      ['change','input'].forEach(ev=>{
+        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
+      });
+      genBtn.addEventListener('click', generate);
+      copyBtn.addEventListener('click', async () => {
+        if (!output.value) return;
+        try { await navigator.clipboard.writeText(output.value); copyBtn.textContent='Copiado!'; setTimeout(()=>copyBtn.textContent='Copiar',1000);}
+        catch(e){ output.select(); document.execCommand('copy'); }
+      });
+      calcStats();
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

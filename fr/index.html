@@ -1,1 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Générateur de mots de passe gratuit et sécurisé. Créez des mots de passe forts et aléatoires avec des options personnalisables, directement dans votre navigateur." />
+  <title>Générateur de mots de passe en ligne – GetPassnow</title>
 
+  <!-- canonical + hreflang -->
+  <link rel="canonical" href="https://getpassnow.net/fr/" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="en" />
+  <link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
+  <link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
+  <link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
+  <link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .icon-lg { font-size: 2rem; color: #0d6efd; }
+    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
+    .faq-section .accordion-button { font-weight: 600; }
+    .pw-output { font-family: ui-monospace, monospace; word-break: break-all; }
+    .navbar-toggler { border: 0; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar .nav-link { padding: .5rem .75rem; }
+    .dropdown-toggle { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+              aria-controls="mainNavbar" aria-expanded="false" aria-label="Afficher/masquer la navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="#howto">Comment ça marche</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- Langues : liens absolus -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Français
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="https://getpassnow.net/">English</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/ru/">Русский</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/de/">Deutsch</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/es/">Español</a></li>
+            <li><a class="dropdown-item active" href="https://getpassnow.net/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero + Générateur -->
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1 class="mb-2">Générez un mot de passe fort en quelques secondes</h1>
+        <p class="text-muted mb-4">Rapide, sûr et gratuit. Votre mot de passe est généré localement dans votre navigateur et n’est jamais envoyé à un serveur.</p>
+
+        <div class="bg-white shadow p-4 rounded text-start">
+          <form id="pw-form" onsubmit="return false;">
+            <div class="mb-3">
+              <label for="length" class="form-label fw-semibold">Longueur du mot de passe</label>
+              <input type="range" class="form-range" id="length" min="8" max="64" value="16">
+              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="lower" checked>
+                  <label class="form-check-label" for="lower">Minuscules (a–z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">Majuscules (A–Z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">Chiffres (0–9)</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="symbols" checked>
+                  <label class="form-check-label" for="symbols">Symboles (!@#$…)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="noRepeat">
+                  <label class="form-check-label" for="noRepeat">Sans caractères répétés</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                  <label class="form-check-label" for="excludeAmbiguous">Exclure les ambigus (O/0, l/1)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                  <label class="form-check-label" for="excludeBrackets">Exclure les parenthèses (){}[] &lt;&gt;</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group my-3">
+              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Votre mot de passe apparaîtra ici" aria-label="Mot de passe généré" readonly>
+              <button class="btn btn-primary" type="button" id="generate">Générer</button>
+              <button class="btn btn-outline-secondary" type="button" id="copy">Copier</button>
+            </div>
+            <div class="small text-muted">Astuce&nbsp;: pour la plupart des comptes, visez 16 caractères ou plus.</div>
+          </form>
+
+          <hr class="my-4">
+          <div id="calc" class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Robustesse</div>
+              <div class="progress" role="progressbar" aria-label="Robustesse du mot de passe" aria-valuemin="0" aria-valuemax="100">
+                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Entropie</div>
+              <div id="entropy" class="small">—</div>
+              <div class="text-muted small">Estimation de l’aléa selon vos options.</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Temps de casse estimé</div>
+              <div id="crack" class="small">—</div>
+              <div class="text-muted small">Hypothèse&nbsp;: 1&nbsp;milliard d’essais par seconde.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comment ça marche -->
+  <section id="howto" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Comment ça marche</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-sliders icon-lg"></i>
+            <h3 class="mt-3 h5">Choisissez les options</h3>
+            <p>Réglez la longueur et les jeux de caractères&nbsp;: minuscules, majuscules, chiffres, symboles.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-lightning-charge icon-lg"></i>
+            <h3 class="mt-3 h5">Cliquez sur «&nbsp;Générer&nbsp;»</h3>
+            <p>Le générateur crée immédiatement une chaîne aléatoire et solide suivant vos règles.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-check icon-lg"></i>
+            <h3 class="mt-3 h5">Copiez et utilisez</h3>
+            <p>Copiez le mot de passe dans le presse-papiers et collez-le là où vous en avez besoin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="about" class="container py-5">
+    <h2 class="text-center mb-4">Pourquoi utiliser un générateur de mots de passe&nbsp;?</h2>
+    <p>
+      Un générateur permet de créer <strong>des mots de passe forts et aléatoires</strong> instantanément. Les mots de passe inventés à la main suivent souvent des schémas, reprennent des dates ou des mots faciles à deviner&nbsp;— exactement ce que testent en premier les attaquants.
+    </p>
+    <p>
+      Ce <strong>générateur gratuit</strong> fonctionne <strong>entièrement dans votre navigateur</strong>. Rien n’est stocké ni transmis&nbsp;: vous pouvez l’utiliser hors ligne. Pour une inscription rapide, 12 caractères peuvent suffire&nbsp;; pour de nouveaux comptes, mieux vaut 16+&nbsp;; pour la banque ou le travail, visez 20+.
+    </p>
+    <h3 class="mt-4 h5">Qu’est-ce qui rend un mot de passe solide&nbsp;?</h3>
+    <p>
+      La robustesse vient de la <strong>longueur</strong> et de l’<strong>entropie</strong>. Une chaîne de 16+ caractères mêlant plusieurs jeux de caractères crée des milliards de combinaisons possibles. Évitez les mots du dictionnaire, les informations personnelles et les répétitions.
+    </p>
+    <h3 class="mt-4 h5">Bonnes pratiques</h3>
+    <p>
+      Utilisez un mot de passe différent pour chaque service. Activez l’authentification à deux facteurs (2FA) quand c’est possible. Confiez la sauvegarde et l’auto-remplissage à un <em>gestionnaire de mots de passe</em>&nbsp;: vous n’aurez rien à mémoriser, tout en gardant des identifiants uniques.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Questions fréquentes</h2>
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q1h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              Puis-je utiliser le générateur hors ligne&nbsp;?
+            </button>
+          </h3>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Oui. Une fois la page chargée, toute la logique s’exécute localement. Même sans connexion, vous pouvez générer de nouveaux mots de passe.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q2h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              Puis-je choisir une longueur précise&nbsp;?
+            </button>
+          </h3>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Bien sûr. Le curseur permet de choisir entre 8 et 64 caractères. Pour les comptes sensibles, 20+ est une bonne cible.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q3h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              Puis-je exclure certains caractères&nbsp;?
+            </button>
+          </h3>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Oui&nbsp;: vous pouvez exclure les caractères ambigus (par ex. O/0, l/1) ou les parenthèses si un site ne les autorise pas.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q4h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              Puis-je éviter les répétitions&nbsp;?
+            </button>
+          </h3>
+          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Oui. Activez «&nbsp;Sans caractères répétés&nbsp;» et le générateur s’assurera que chaque symbole n’apparaît qu’une seule fois.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q5h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+              Est-ce adapté aux comptes sensibles&nbsp;?
+            </button>
+          </h3>
+          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Oui. Le générateur utilise l’aléa cryptographique du navigateur. Combiné à des mots de passe longs et à la 2FA, le niveau est suffisant pour la banque, le travail ou l’e-mail.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q6h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+              Conservez-vous les mots de passe générés&nbsp;?
+            </button>
+          </h3>
+          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Non. Rien n’est stocké ni transmis. Au rechargement ou à la fermeture de la page, le mot de passe disparaît. Pour les garder, utilisez un gestionnaire dédié.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">© 2025 GetPassnow. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Générateur + Calculateur (identique à EN) -->
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s);
+      const length = $('#length');
+      const lower = $('#lower');
+      const upper = $('#upper');
+      const digits = $('#digits');
+      const symbols = $('#symbols');
+      const noRepeat = $('#noRepeat');
+      const excludeAmbiguous = $('#excludeAmbiguous');
+      const excludeBrackets = $('#excludeBrackets');
+      const output = $('#password');
+      const genBtn = $('#generate');
+      const copyBtn = $('#copy');
+      const bar = $('#strengthBar');
+      const label = $('#strengthLabel');
+      const entropyEl = $('#entropy');
+      const crackEl = $('#crack');
+
+      const sets = {
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        digits: '0123456789',
+        symbols: "!@#$%^&*_-+=~?.,:;|/\\\\'\\\"`(){}[]<>",
+      };
+      const ambiguous = new Set(['O','0','l','1','I']);
+      const brackets = new Set(['(',')','{','}','[',']','<','>']);
+
+      function buildPool() {
+        let pool = '';
+        if (lower.checked) pool += sets.lower;
+        if (upper.checked) pool += sets.upper;
+        if (digits.checked) pool += sets.digits;
+        if (symbols.checked) pool += sets.symbols;
+        let arr = Array.from(new Set(pool.split('')));
+        if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
+        if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
+        return arr.join('');
+      }
+
+      function cryptoRandom(n) {
+        const buf = new Uint32Array(n);
+        (crypto || window.crypto).getRandomValues(buf);
+        return buf;
+      }
+
+      function humanTime(seconds) {
+        const units = [['year',31536000],['day',86400],['hour',3600],['min',60],['sec',1]];
+        for (const [name,s] of units) {
+          if (seconds >= s) { const v = Math.floor(seconds/s); return v + ' ' + name + (v>1?'s':''); }
+        }
+        return '< 1 sec';
+      }
+
+      function calcStats() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        const N = pool.length;
+        if (!N || L<=0) {
+          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
+          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+        }
+        let entropyBits = 0; let keyspace = 0n;
+        if (noRepeat.checked) { keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
+        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        const guessesPerSec = 1e9;
+        let seconds;
+        try { const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
+        catch { seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+
+        let pct=0, text='', cls='bg-danger';
+        if (entropyBits < 28) { pct=15; text='Très faible'; cls='bg-danger'; }
+        else if (entropyBits < 36) { pct=30; text='Faible'; cls='bg-warning'; }
+        else if (entropyBits < 60) { pct=60; text='Correct'; cls='bg-info'; }
+        else if (entropyBits < 128) { pct=85; text='Fort'; cls='bg-success'; }
+        else { pct=100; text='Très fort'; cls='bg-success'; }
+
+        bar.style.width = pct + '%';
+        bar.className = 'progress-bar ' + cls;
+        label.textContent = text + ' · ' + L + ' caractères · pool ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
+        crackEl.textContent = humanTime(seconds);
+      }
+
+      function generate() {
+        const L = parseInt(length.value,10) || 16;
+        const pool = buildPool();
+        if (!pool) { output.value=''; calcStats(); return; }
+        const arr = pool.split('');
+        if (noRepeat.checked && L > arr.length) {
+          output.value='Augmentez le jeu de caractères ou désactivez « Sans répétitions »';
+          calcStats(); return;
+        }
+        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        for (let i=0;i<L;i++){
+          let idx = rnd[i] % arr.length;
+          if (noRepeat.checked){ let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; } used.add(idx); }
+          res.push(arr[idx]);
+        }
+        output.value = res.join('');
+        calcStats();
+      }
+
+      ['change','input'].forEach(ev=>{
+        [length,lower,upper,digits,symbols,nuRepeat,excludeAmbiguous,excludeBrackets]
+          .forEach(el=> el && el.addEventListener(ev, calcStats));
+      });
+      document.getElementById('generate').addEventListener('click', generate);
+      document.getElementById('copy').addEventListener('click', async () => {
+        if (!output.value) return;
+        try { await navigator.clipboard.writeText(output.value);
+             document.getElementById('copy').textContent='Copié !';
+             setTimeout(()=>document.getElementById('copy').textContent='Copier',1000);
+        } catch(e){ output.select(); document.execCommand('copy'); }
+      });
+      calcStats();
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

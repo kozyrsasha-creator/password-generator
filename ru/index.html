@@ -1,1 +1,438 @@
-<!DOCTYPE html> <html lang="ru"> <head> <title>GetPassnow - Онлайн генератор паролей</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="stylesheet" href="styles.css"> <script src="script.js"></script> <!-- Добавлены для SEO и многоязычности --> <link rel="canonical" href="https://getpassnow.com/" hreflang="en"> <link rel="alternate" href="https://getpassnow.com/ru/" hreflang="ru"> </head> <body> <header> <div class="container"> <div class="logo">GetPassnow</div> <nav> <ul> <li><a href="#how-it-works">Как это работает</a></li> <li><a href="#about">О сервисе</a></li> <li><a href="#faq">FAQ</a></li> </ul> </nav> <div class="language-selector"> <button class="language-button"> <span>Русский</span> </button> <div class="language-dropdown"> <a href="/">English</a> <a href="/ru/">Русский</a> <a href="/de/">Deutsch</a> <a href="/es/">Español</a> <a href="/fr/">Français</a> </div> </div> </div> </header> <section class="hero"> <div class="container"> <h1>Сгенерируйте сильный пароль за секунды</h1> <p>Быстро, безопасно и бесплатно. Ваш пароль генерируется локально в вашем браузере и никогда не отправляется на сервер.</p> <div class="generator"> <div class="options"> <label>Длина пароля</label> <input type="range" min="8" max="64" value="16"> <span>16</span> <div class="checkboxes"> <label> <input type="checkbox" checked> Строчные буквы (a–z) </label> <label> <input type="checkbox" checked> Прописные буквы (A–Z) </label> <label> <input type="checkbox" checked> Цифры (0–9) </label> <label> <input type="checkbox" checked> Символы (!@#$…) </label> <label> <input type="checkbox"> Без повторяющихся символов </label> <label> <input type="checkbox"> Исключить неоднозначные (O/0, l/1) </label> <label> <input type="checkbox"> Исключить скобки (){}[] <> </label> </div> <div class="buttons"> <button>Сгенерировать</button> <button>Копировать</button> </div> <p class="tip">Совет: стремитесь к 16+ символам для большинства аккаунтов.</p> </div> <div class="stats"> <div> <h3>Сила</h3> <progress value="0" max="100"></progress> <p>—</p> </div> <div> <h3>Энтропия</h3> <p>—</p> <p>Оценочные биты случайности на основе ваших опций.</p> </div> <div> <h3>Оценочное время взлома</h3> <p>—</p> <p>Предполагая 1 миллиард догадок в секунду, средний случай.</p> </div> </div> </div> </div> </section> <section id="how-it-works" class="how-it-works"> <div class="container"> <h2>Как это работает</h2> <div class="steps"> <div class="step"> <img src="step1.svg" alt="Choose options"> <h3>Выберите опции</h3> <p>Выберите длину пароля и переключите строчные, прописные, цифры или символы.</p> </div> <div class="step"> <img src="step2.svg" alt="Click generate"> <h3>Нажмите сгенерировать</h3> <p>Нажмите кнопку сгенерировать, и инструмент мгновенно создаст случайную безопасную строку.</p> </div> <div class="step"> <img src="step3.svg" alt="Copy and use"> <h3>Скопируйте и используйте</h3> <p>Скопируйте пароль в буфер обмена и используйте его там, где нужны учетные данные.</p> </div> </div> </div> </section> <section id="about" class="about"> <div class="container"> <h2>Почему использовать генератор паролей?</h2> <p>Генератор паролей помогает создавать сильные, случайные пароли мгновенно. Пароли, созданные людьми, часто повторяют шаблоны, включают личные детали или используют предсказуемые последовательности. Генератор избегает этих ловушек и производит строки, соответствующие строгим правилам безопасности. Вы решаете длину — от 8 до 64 символов — и включать ли прописные, строчные буквы, цифры или символы. Опции, такие как без повторяющихся символов, исключить неоднозначные (O/0, l/1) или исключить скобки, позволяют адаптировать пароли к конкретным сайтам.</p> <p>Этот бесплатный онлайн генератор паролей работает полностью в вашем браузере. Ничего не хранится или не передается. Это значит, что вы можете генерировать пароль оффлайн, уверенные, что третьи лица не имеют доступа. Нужно что-то короткое для устаревшей формы? Сгенерируйте 12 символов. Создаете новый аккаунт? Выберите 16 или больше. Защищаете банковские или рабочие аккаунты? Выберите 20+ символов. Чем длиннее пароль, тем сильнее защита.</p> <h2>Что делает пароль сильным?</h2> <p>Сила исходит от длины и энтропии. Шестибуквенные слова или обычные имена тривиальны для угадывания, в то время как 16-символьные строки, смешивающие разные наборы символов, создают миллиарды возможных комбинаций. Избегайте словарных слов, дней рождения и фраз, связанных с вашей личностью. Если предпочитаете легкость ввода, passphrase из случайных слов может быть как практичным, так и безопасным.</p> <h2>Лучшие практики</h2> <p>Используйте разный пароль для каждого аккаунта. Если один сервис взломан, другие остаются защищенными. Включите двухфакторную аутентификацию (2FA) везде, где возможно. Комбинируйте этот генератор с надежным менеджером паролей для сохранения, организации и автозаполнения ваших учетных данных на устройствах. Таким образом, вам не нужно помнить десятки случайных строк, но каждый логин остается уникальным.</p> </div> </section> <section id="faq" class="faq"> <div class="container"> <h2>Часто задаваемые вопросы</h2> <div class="faq-item"> <h3>Могу ли я использовать этот генератор оффлайн?</h3> <p>Да. Как только страница загрузилась в вашем браузере, генератор не нуждается в интернет-соединении. Вся логика работает локально, так что вы можете даже отключить Wi-Fi и все равно создавать новые пароли.</p> </div> <div class="faq-item"> <h3>Могу ли я выбрать точную длину пароля?</h3> <p>Абсолютно. Слайдер позволяет выбрать от 8 до 64 символов. Многие сайты позволяют 16, но для аккаунтов с деньгами или чувствительными данными разумно стремиться к 20+.</p> </div> <div class="faq-item"> <h3>Могу ли я исключить confusing символы?</h3> <p>Да. Вы можете исключить символы, которые часто путают, такие как O и 0 или l и 1. Это помогает, когда нужно читать пароль вслух или вводить вручную без ошибок.</p> </div> <div class="faq-item"> <h3>Могу ли я предотвратить повторяющиеся символы?</h3> <p>Да. Включите опцию «без повторяющихся символов», и генератор гарантирует, что каждый символ в пароле появляется только один раз. Это может быть полезно при соблюдении строгих политик безопасности.</p> </div> <div class="faq-item"> <h3>Могу ли я полагаться на это для чувствительных аккаунтов?</h3> <p>Да. Генератор использует криптографическую случайность, встроенную в современные браузеры. Комбинируйте длинный пароль отсюда с двухфакторной аутентификацией, и он достаточно силен для банков, рабочих систем или личной почты.</p> </div> <div class="faq-item"> <h3>Могу ли я хранить эти пароли на вашем сайте?</h3> <p>Нет. Этот инструмент не хранит и не передает сгенерированные пароли. Как только вы закроете или обновите страницу, пароль исчезает. Чтобы хранить их безопасно, используйте доверенный менеджер паролей.</p> </div> </div> </section> <footer> <div class="container"> <p>© 2025 GetPassnow. Все права защищены.</p> </div> </footer> </body> </html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Бесплатный генератор надёжных паролей. Создавайте случайные пароли с настраиваемой длиной и символами. Работает локально в вашем браузере." />
+  <title>Генератор паролей онлайн — GetPassnow</title>
+
+  <!-- canonical + hreflang -->
+  <link rel="canonical" href="https://getpassnow.net/ru/" />
+  <link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
+  <link rel="alternate" href="https://getpassnow.net/en/" hreflang="en" />
+  <link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
+  <link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
+  <link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
+  <link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
+
+  <!-- assets -->
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    .icon-lg { font-size: 2rem; }
+    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
+    .faq-section .accordion-button { font-weight: 600; }
+    .pw-output { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
+    .navbar-toggler { border: 0; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar .nav-link { padding: .5rem .75rem; }
+    .dropdown-toggle { white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка / бренд -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link" href="#howto">Как это работает</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">О сервисе</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- Языки: абсолютные ссылки на отдельные страницы -->
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Русский
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="https://getpassnow.net/en/">English</a></li>
+            <li><a class="dropdown-item active" href="https://getpassnow.net/ru/">Русский</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/de/">Deutsch</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/es/">Español</a></li>
+            <li><a class="dropdown-item" href="https://getpassnow.net/fr/">Français</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Герой -->
+  <section class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1 class="mb-2">Создайте надёжный пароль за секунды</h1>
+        <p class="text-muted mb-4">Быстро, безопасно и бесплатно. Генерация выполняется локально в вашем браузере и не отправляется на сервер.</p>
+
+        <!-- Генератор + Калькулятор -->
+        <div class="bg-white shadow p-4 rounded text-start">
+          <form id="pw-form" onsubmit="return false;">
+            <div class="mb-3">
+              <label for="length" class="form-label fw-semibold">Длина пароля</label>
+              <input type="range" class="form-range" id="length" min="8" max="64" value="16">
+              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="lower" checked>
+                  <label class="form-check-label" for="lower">Строчные (a–z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">Прописные (A–Z)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">Цифры (0–9)</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="symbols" checked>
+                  <label class="form-check-label" for="symbols">Символы (!@#$…)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="noRepeat">
+                  <label class="form-check-label" for="noRepeat">Без повторяющихся символов</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                  <label class="form-check-label" for="excludeAmbiguous">Исключить похожие (O/0, l/1)</label>
+                </div>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                  <label class="form-check-label" for="excludeBrackets">Исключить скобки (){}[] &lt;&gt;</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group my-3">
+              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Пароль появится здесь" aria-label="Сгенерированный пароль" readonly>
+              <button class="btn btn-primary" type="button" id="generate">Сгенерировать</button>
+              <button class="btn btn-outline-secondary" type="button" id="copy">Копировать</button>
+            </div>
+            <div class="small text-muted">Подсказка: для большинства аккаунтов выбирайте 16+ символов.</div>
+          </form>
+
+          <hr class="my-4">
+          <div id="calc" class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Надёжность</div>
+              <div class="progress" role="progressbar" aria-label="Надёжность пароля" aria-valuemin="0" aria-valuemax="100">
+                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
+              </div>
+              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Энтропия</div>
+              <div id="entropy" class="small">—</div>
+              <div class="text-muted small">Оценка случайности на основе выбранных опций.</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-semibold mb-1">Оценка взлома перебором</div>
+              <div id="crack" class="small">—</div>
+              <div class="text-muted small">Предполагаем 1 млрд попыток/сек., средний случай.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как это работает -->
+  <section id="howto" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Как это работает</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-sliders icon-lg"></i>
+            <h3 class="mt-3 h5">Выберите опции</h3>
+            <p>Установите длину пароля и включите нужные наборы: строчные, прописные, цифры, символы.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-lightning-charge icon-lg"></i>
+            <h3 class="mt-3 h5">Нажмите «Сгенерировать»</h3>
+            <p>Инструмент мгновенно создаст случайную безопасную строку с учётом выбранных правил.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <i class="bi bi-clipboard-check icon-lg"></i>
+            <h3 class="mt-3 h5">Скопируйте и используйте</h3>
+            <p>Скопируйте пароль в буфер и вставляйте там, где требуется вход по учётным данным.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- О сервисе -->
+  <section id="about" class="container py-5">
+    <h2 class="text-center mb-4">Зачем нужен генератор паролей?</h2>
+    <p>
+      Генератор помогает создать <strong>сильные случайные пароли</strong> за секунды. Ручные пароли часто повторяют
+      шаблоны, включают личные данные или предсказуемые последовательности. Автоматическая генерация
+      избегает этих ловушек и выдаёт строки, удовлетворяющие строгим требованиям безопасности.
+    </p>
+    <p>
+      Этот <strong>бесплатный генератор</strong> работает полностью в браузере: мы ничего не храним и не передаём. Для старых форм
+      подойдёт 12 символов, для новых аккаунтов — лучше 16+, для банков и рабочих систем — 20+.
+      Чем длиннее пароль, тем выше защита.
+    </p>
+    <h3 class="mt-4 h5">Что делает пароль сильным?</h3>
+    <p>
+      Ключевые факторы — <strong>длина</strong> и <strong>энтропия</strong>. Короткие слова легко угадать, а 16-символьные строки,
+      использующие разные наборы символов, образуют миллиарды комбинаций. Избегайте словарных слов,
+      дат рождения и фраз, связанных с вашей личностью.
+    </p>
+    <h3 class="mt-4 h5">Практика</h3>
+    <p>
+      Используйте уникальный пароль для каждого сервиса и включайте двухфакторную аутентификацию (2FA).
+      Сохранение и авто-ввод удобнее поручить менеджеру паролей — так вы не запутаетесь в десятках строк,
+      и каждый логин останется уникальным.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq-section bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Частые вопросы</h2>
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q1h">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              Могу ли я использовать генератор офлайн?
+            </button>
+          </h3>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Да. После загрузки страницы интернет не требуется: вся логика выполняется локально.
+              Можно выключить Wi-Fi — генерация продолжит работать.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q2h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              Могу ли я выбрать точную длину пароля?
+            </button>
+          </h3>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Конечно. Ползунок позволяет выбрать от 8 до 64 символов. Для чувствительных аккаунтов
+              разумно ориентироваться на 20+.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q3h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              Могу ли я исключить похожие символы?
+            </button>
+          </h3>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Да. Можно исключить символы, которые часто путают: например, O и 0 или l и 1 — это уменьшает риск ошибок при вводе.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q4h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              Могу ли я запретить повторы?
+            </button>
+          </h3>
+          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Да. Включите опцию «без повторяющихся символов», и генератор гарантирует, что каждый символ в пароле встречается только один раз.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q5h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+              Можно ли полагаться на этот инструмент для важных аккаунтов?
+            </button>
+          </h3>
+          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Да. Используется криптографический генератор случайных чисел браузера. В паре с длинным паролем и 2FA этого достаточно для банков, почты и рабочих систем.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header h6" id="q6h">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+              Храните ли вы сгенерированные пароли?
+            </button>
+          </h3>
+          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Нет. Сервис ничего не сохраняет и никуда не отправляет. После закрытия или обновления страницы пароль исчезает. Для хранения используйте менеджер паролей.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">© 2025 GetPassnow. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Генератор + Калькулятор (тот же JS, что в EN) -->
+  <script>
+    (() => {
+      const $ = s => document.querySelector(s);
+      const length = $('#length');
+      const lower = $('#lower');
+      const upper = $('#upper');
+      const digits = $('#digits');
+      const symbols = $('#symbols');
+      const noRepeat = $('#noRepeat');
+      const excludeAmbiguous = $('#excludeAmbiguous');
+      const excludeBrackets = $('#excludeBrackets');
+      const output = $('#password');
+      const genBtn = $('#generate');
+      const copyBtn = $('#copy');
+      const bar = $('#strengthBar');
+      const label = $('#strengthLabel');
+      const entropyEl = $('#entropy');
+      const crackEl = $('#crack');
+
+      const sets = {
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        digits: '0123456789',
+        symbols: "!@#$%^&*_-+=~?.,:;|/\\\\'\\\"`(){}[]<>",
+      };
+      const ambiguous = new Set(['O','0','l','1','I']);
+      const brackets = new Set(['(',')','{','}','[',']','<','>']);
+
+      function buildPool() {
+        let pool = '';
+        if (lower.checked) pool += sets.lower;
+        if (upper.checked) pool += sets.upper;
+        if (digits.checked) pool += sets.digits;
+        if (symbols.checked) pool += sets.symbols;
+        let arr = Array.from(new Set(pool.split('')));
+        if (excludeAmbiguous.checked) arr = arr.filter(c => !ambiguous.has(c));
+        if (excludeBrackets.checked) arr = arr.filter(c => !brackets.has(c));
+        return arr.join('');
+      }
+
+      function cryptoRandom(n){
+        const buf = new Uint32Array(n);
+        (crypto || window.crypto).getRandomValues(buf);
+        return buf;
+      }
+
+      function humanTime(seconds){
+        const units = [['год',31536000],['день',86400],['час',3600],['мин',60],['сек',1]];
+        for (const [name,s] of units) if (seconds >= s) {
+          const v = Math.floor(seconds/s);
+          const plural = (n,w1,w2,w5) => {
+            n = Math.abs(n)%100; const n1 = n%10;
+            if (n>10 && n<20) return w5;
+            if (n1>1 && n1<5) return w2;
+            if (n1==1) return w1;
+            return w5;
+          };
+          return v+' '+(name==='год'? plural(v,'год','года','лет'): name+(v>1?'':''));
+        }
+        return '< 1 сек';
+      }
+
+      function calcStats(){
+        const L = parseInt(length.value,10)||16;
+        const pool = buildPool();
+        const N = pool.length;
+        if (!N || L<=0){
+          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
+          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+        }
+        let entropyBits = 0; let keyspace = 0n;
+        if (noRepeat.checked){ keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
+        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        const guessesPerSec = 1e9;
+        let seconds;
+        try{ const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
+        catch{ seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+
+        let pct=0, text='', cls='bg-danger';
+        if (entropyBits < 28){ pct=15; text='Очень слабый'; cls='bg-danger'; }
+        else if (entropyBits < 36){ pct=30; text='Слабый'; cls='bg-warning'; }
+        else if (entropyBits < 60){ pct=60; text='Средний'; cls='bg-info'; }
+        else if (entropyBits < 128){ pct=85; text='Сильный'; cls='bg-success'; }
+        else { pct=100; text='Очень сильный'; cls='bg-success'; }
+        bar.style.width = pct + '%';
+        bar.className = 'progress-bar ' + cls;
+        label.textContent = text + ' · ' + L + ' симв. · набор ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1) + ' бит';
+        crackEl.textContent = humanTime(seconds);
+      }
+
+      function generate(){
+        const L = parseInt(length.value,10)||16;
+        const pool = buildPool();
+        if (!pool){ output.value=''; calcStats(); return; }
+        const arr = pool.split('');
+        if (noRepeat.checked && L > arr.length){
+          output.value='Увеличьте набор или отключите запрет повторов'; calcStats(); return;
+        }
+        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        for (let i=0;i<L;i++){
+          let idx = rnd[i] % arr.length;
+          if (noRepeat.checked){
+            let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; }
+            used.add(idx);
+          }
+          res.push(arr[idx]);
+        }
+        output.value = res.join('');
+        calcStats();
+      }
+
+      ['change','input'].forEach(ev=>{
+        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
+      });
+      document.getElementById('generate').addEventListener('click', generate);
+      document.getElementById('copy').addEventListener('click', async () => {
+        if (!output.value) return;
+        try { await navigator.clipboard.writeText(output.value);
+              document.getElementById('copy').textContent='Скопировано!';
+              setTimeout(()=>document.getElementById('copy').textContent='Копировать',1000);
+        } catch(e){ output.select(); document.execCommand('copy'); }
+      });
+      calcStats();
+    })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

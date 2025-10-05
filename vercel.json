@@ -1,0 +1,6 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/ru", "destination": "/ru/", "permanent": true }
+  ]
+}

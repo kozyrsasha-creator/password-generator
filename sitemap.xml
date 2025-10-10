@@ -9,37 +9,62 @@
 
 <url>
   <loc>https://getpassnow.net/</loc>
-  <lastmod>2025-10-08T12:03:43+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:16+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/ru/</loc>
-  <lastmod>2025-10-08T12:03:43+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:17+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/de/</loc>
-  <lastmod>2025-10-08T12:03:43+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:17+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/es/</loc>
-  <lastmod>2025-10-08T12:03:44+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:17+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/fr/</loc>
-  <lastmod>2025-10-08T12:03:44+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:18+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/id/</loc>
-  <lastmod>2025-10-08T12:03:44+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:18+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://getpassnow.net/pt/</loc>
-  <lastmod>2025-10-08T12:03:44+00:00</lastmod>
+  <lastmod>2025-10-10T21:21:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://getpassnow.net/privacy/</loc>
+  <lastmod>2025-10-10T21:21:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://getpassnow.net/terms/</loc>
+  <lastmod>2025-10-10T21:21:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://getpassnow.net/cookies/</loc>
+  <lastmod>2025-10-10T21:21:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://getpassnow.net/disclaimer/</loc>
+  <lastmod>2025-10-10T21:21:19+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://getpassnow.net/about/</loc>
+  <lastmod>2025-10-10T21:21:19+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 

@@ -61,6 +61,64 @@
 }
 </script>
 </head>
+  <!-- Schema.org FAQPage (ES) — вставить перед </body> на /es/index.html -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar el generador sin conexión?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Una vez cargada la página, toda la lógica funciona localmente. Incluso sin internet puedes generar nuevas contraseñas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo elegir una longitud exacta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claro. El control deslizante permite entre 8 y 64 caracteres. Para cuentas sensibles, 20+ es una meta razonable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo excluir caracteres problemáticos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Puedes excluir caracteres ambiguos como O/0 o l/1, y también paréntesis si un sitio no los permite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo evitar repeticiones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Activa “Sin caracteres repetidos” y el generador se asegurará de no repetir símbolos dentro de la contraseña."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es adecuado para cuentas sensibles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Se usa el generador criptográfico de números aleatorios del navegador. Combinado con contraseñas largas y 2FA, el nivel de seguridad es alto para banca, correo o trabajo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Guardáis las contraseñas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Nada se guarda ni se envía. Al cerrar o recargar la página, la contraseña desaparece. Para almacenarlas, utiliza un gestor de contraseñas."
+      }
+    }
+  ]
+}
+</script>
+
 <body>
 
   <!-- Navbar -->

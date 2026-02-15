@@ -384,9 +384,16 @@
     }
 
     .stat-card i {
-      color: var(--text-secondary);
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
+    }
+
+    [data-theme="light"] .stat-card i {
+      color: #adb5bd;
+    }
+
+    [data-theme="dark"] .stat-card i {
+      color: #b8b8c8;
     }
 
     .stat-value {

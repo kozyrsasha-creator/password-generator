@@ -1,40 +1,595 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Бесплатный генератор надёжных паролей. Создавайте случайные пароли с настраиваемой длиной и символами. Работает локально в вашем браузере." />
   <title>Генератор паролей онлайн — GetPassnow</title>
+<meta name="google-site-verification" content="190I-fXk774x3B93SlgnIpzM4JwCazt9imMuw1gmfOQ" />
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://getpassnow.net/ru/" />
 
-  <!-- canonical + hreflang -->
-  <link rel="canonical" href="https://getpassnow.net/ru/" />
-  <link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
-  <link rel="alternate" href="https://getpassnow.net/" hreflang="en" />
-  <link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
-  <link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
-  <link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
-  <link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
-  <link rel="alternate" href="https://getpassnow.net/id/" hreflang="id" />
-  <link rel="alternate" href="https://getpassnow.net/pt/" hreflang="pt" />
-
-  <!-- assets -->
+<!-- hreflang: корень = x-default и en -->
+<link rel="alternate" href="https://getpassnow.net/" hreflang="x-default" />
+<link rel="alternate" href="https://getpassnow.net/" hreflang="en" />
+<link rel="alternate" href="https://getpassnow.net/ru/" hreflang="ru" />
+<link rel="alternate" href="https://getpassnow.net/de/" hreflang="de" />
+<link rel="alternate" href="https://getpassnow.net/es/" hreflang="es" />
+<link rel="alternate" href="https://getpassnow.net/fr/" hreflang="fr" />
+<link rel="alternate" href="https://getpassnow.net/id/" hreflang="id" />
+<link rel="alternate" href="https://getpassnow.net/pt/" hreflang="pt" />
+  <!-- Assets -->
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
   <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
-    .icon-lg { font-size: 2rem; }
-    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
-    .faq-section .accordion-button { font-weight: 600; }
-    .pw-output { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; }
-    .navbar-toggler { border: 0; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar .nav-link { padding: .5rem .75rem; }
-    .dropdown-toggle { white-space: nowrap; }
-  </style>
+    :root[data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-primary: #1a1a2e;
+      --text-secondary: #6c757d;
+      --text-muted: #adb5bd;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --shadow: rgba(0, 0, 0, 0.1);
+      --accent-1: #667eea;
+      --accent-2: #764ba2;
+      --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --navbar-bg: rgba(255, 255, 255, 0.98);
+      --footer-bg: #1a1a2e;
+    }
 
-  <script type="application/ld+json">
+    :root[data-theme="dark"] {
+      --bg-primary: #0f0f1e;
+      --bg-secondary: #1a1a2e;
+      --bg-card: rgba(26, 26, 46, 0.9);
+      --text-primary: #e8e8f0;
+      --text-secondary: #b8b8c8;
+      --text-muted: #8888a0;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow: rgba(0, 0, 0, 0.3);
+      --accent-1: #7b93ff;
+      --accent-2: #9966cc;
+      --accent-gradient: linear-gradient(135deg, #7b93ff 0%, #9966cc 100%);
+      --card-bg: rgba(26, 26, 46, 0.95);
+      --navbar-bg: rgba(26, 26, 46, 0.98);
+      --footer-bg: #0a0a14;
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--accent-gradient);
+      opacity: 0.03;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .navbar {
+      background: var(--navbar-bg) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 20px var(--shadow);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-1) !important;
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent-gradient);
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .btn-outline-secondary {
+      border-color: var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .btn-outline-secondary:hover {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: white;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .lead-text {
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .generator-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .generator-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-range {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .form-range::-webkit-slider-thumb {
+      background: var(--accent-gradient);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .form-range::-moz-range-thumb {
+      background: var(--accent-gradient);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow);
+      border: none;
+    }
+
+    .form-check {
+      padding: 0.75rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .form-check:hover {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+    }
+
+    .form-check-input {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid var(--border-color);
+      cursor: pointer;
+    }
+
+    .form-check-input:checked {
+      background: var(--accent-gradient);
+      border-color: transparent;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .password-output {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 1.25rem;
+      word-break: break-all;
+      color: var(--text-primary);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .password-output:focus {
+      border-color: var(--accent-1);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      outline: none;
+    }
+
+    .btn-gradient {
+      background: var(--accent-gradient);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      color: white;
+    }
+
+    .btn-gradient:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline-gradient {
+      background: var(--bg-secondary);
+      border: 2px solid var(--accent-1);
+      color: var(--accent-1);
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .btn-outline-gradient {
+      background: white;
+      border: 2px solid var(--accent-1);
+      color: var(--accent-1);
+    }
+
+    [data-theme="dark"] .btn-outline-gradient {
+      background: rgba(123, 147, 255, 0.1);
+      border: 2px solid var(--accent-1);
+      color: #a5b8ff;
+    }
+
+    .btn-outline-gradient:hover {
+      background: var(--accent-gradient) !important;
+      color: white !important;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .strength-meter {
+      background: var(--bg-secondary);
+      height: 16px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 1rem 0;
+      border: 2px solid var(--border-color);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="light"] .strength-meter {
+      background: #dee2e6;
+      border-color: #ced4da;
+    }
+
+    [data-theme="dark"] .strength-meter {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .progress-bar {
+      transition: width 0.5s ease, background 0.3s ease;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      height: 100%;
+    }
+
+    .bg-danger {
+      background: linear-gradient(90deg, #dc3545 0%, #c82333 100%) !important;
+    }
+
+    .bg-warning {
+      background: linear-gradient(90deg, #ffc107 0%, #e0a800 100%) !important;
+    }
+
+    .bg-info {
+      background: linear-gradient(90deg, #0dcaf0 0%, #0aa2c0 100%) !important;
+    }
+
+    .bg-success {
+      background: linear-gradient(90deg, #198754 0%, #157347 100%) !important;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+
+    .stat-card i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    [data-theme="light"] .stat-card i {
+      color: #adb5bd;
+    }
+
+    [data-theme="dark"] .stat-card i {
+      color: #b8b8c8;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .stat-label {
+      color: #6c757d;
+    }
+
+    [data-theme="dark"] .stat-label {
+      color: #b8b8c8;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px var(--shadow);
+      border-color: var(--accent-1);
+    }
+
+    .feature-card h5 {
+      color: var(--text-primary);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: white;
+      font-size: 1.75rem;
+    }
+
+    .accordion {
+      background: transparent;
+    }
+
+    .accordion-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      background: transparent;
+      color: var(--text-primary);
+      font-weight: 600;
+      padding: 1.25rem 1.5rem;
+      border: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: var(--bg-secondary);
+      color: var(--accent-1);
+      box-shadow: none;
+    }
+
+    .accordion-button::after {
+      filter: var(--bs-accordion-btn-icon-filter);
+    }
+
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    .accordion-body {
+      padding: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      background: var(--bg-secondary);
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: var(--text-secondary);
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: var(--accent-1);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-2);
+      transform: translateY(-1px);
+    }
+
+    .dropdown-menu {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.5rem;
+      box-shadow: 0 10px 40px var(--shadow);
+    }
+
+    .dropdown-item {
+      color: var(--text-primary);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .navbar-toggler {
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .generator-card {
+        padding: 1.5rem;
+      }
+      
+      .btn-gradient, .btn-outline-gradient {
+        padding: 0.875rem 1.5rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .badge-new {
+      background: var(--accent-gradient);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+  </style>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -44,7 +599,6 @@
 }
 </script>
 
-<!-- WebApplication (RU) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,7 +614,11 @@
     "Гибкие настройки символов и длины",
     "Мгновенное копирование"
   ],
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 }
 </script>
 </head>
@@ -122,10 +680,12 @@
 </script>
 <body>
 
-  <!-- Шапка / бренд -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+  <!-- Header / Brand -->
+  <nav class="navbar navbar-expand-md sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <a class="navbar-brand" href="/">
+        <i class="bi bi-shield-lock-fill"></i> GetPassnow
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -138,278 +698,368 @@
           <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         </ul>
 
-        <!-- Языки: абсолютные ссылки на отдельные страницы -->
-        <div class="dropdown">
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Русский
+        <div class="d-flex align-items-center gap-3">
+          <!-- Theme Toggle -->
+          <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+            <i class="bi bi-sun-fill" id="themeIcon"></i>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="https://getpassnow.net/">English</a></li>
-            <li><a class="dropdown-item active" href="https://getpassnow.net/ru/">Русский</a></li>
-            <li><a class="dropdown-item" href="https://getpassnow.net/de/">Deutsch</a></li>
-            <li><a class="dropdown-item" href="https://getpassnow.net/es/">Español</a></li>
-            <li><a class="dropdown-item" href="https://getpassnow.net/fr/">Français</a></li>
-            <li><a class="dropdown-item" href="https://getpassnow.net/id/">Bahasa Indonesia</a></li>
-            <li><a class="dropdown-item" href="https://getpassnow.net/pt/">Português</a></li>
-          </ul>
+
+          <!-- Language dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-globe"></i> Русский
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/">English</a></li>
+              <li><a class="dropdown-item" href="/ru/"><i class="bi bi-check-lg text-success"></i> Русский</a></li>
+              <li><a class="dropdown-item" href="/de/">Deutsch</a></li>
+              <li><a class="dropdown-item" href="/es/">Español</a></li>
+              <li><a class="dropdown-item" href="/fr/">Français</a></li>
+              <li><a class="dropdown-item" href="/id/">Bahasa Indonesia</a></li>
+              <li><a class="dropdown-item" href="/pt/">Português</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Герой -->
-  <section class="container my-4">
+  <!-- Hero -->
+  <section class="container my-5 py-4">
     <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="mb-2">Создайте надёжный пароль за секунды</h1>
-        <p class="text-muted mb-4">Быстро, безопасно и бесплатно. Генерация выполняется локально в вашем браузере и не отправляется на сервер.</p>
+      <div class="col-lg-10 text-center fade-in-up">
+        <h1 class="mb-3">Создайте надёжный пароль за секунды</h1>
+        <p class="lead-text mb-5">Быстро, безопасно и бесплатно. Генерация выполняется локально в вашем браузере и не отправляется на сервер.</p>
 
-        <!-- Генератор + Калькулятор -->
-        <div class="bg-white shadow p-4 rounded text-start">
+        <!-- Generator Card -->
+        <div class="generator-card text-start">
           <form id="pw-form" onsubmit="return false;">
-            <div class="mb-3">
-              <label for="length" class="form-label fw-semibold">Длина пароля</label>
+            <!-- Password Output -->
+            <div class="mb-4">
+              <label class="form-label">
+                <i class="bi bi-key-fill"></i> Ваш пароль
+              </label>
+              <input type="text" id="password" class="password-output form-control" readonly placeholder="Нажмите Генерировать для создания пароля">
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-sm-6">
+                <button type="button" id="generate" class="btn btn-gradient w-100">
+                  <i class="bi bi-arrow-clockwise"></i> Генерировать пароль
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button type="button" id="copy" class="btn btn-outline-gradient w-100">
+                  <i class="bi bi-clipboard"></i> Скопировать
+                </button>
+              </div>
+            </div>
+
+            <!-- Strength Meter -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label mb-0">
+                  <i class="bi bi-bar-chart-fill"></i> Надёжность пароля
+                </label>
+                <span id="strengthLabel" class="small fw-semibold" style="color: var(--text-secondary);">—</span>
+              </div>
+              <div class="strength-meter">
+                <div id="strengthBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="stat-card">
+                  <i class="bi bi-speedometer2"></i>
+                  <span class="stat-value" id="entropy">—</span>
+                  <span class="stat-label">Энтропия</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stat-card">
+                  <i class="bi bi-hourglass-split"></i>
+                  <span class="stat-value" id="crack">—</span>
+                  <span class="stat-label">Время взлома</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Length Slider -->
+            <div class="mb-4">
+              <label for="length" class="form-label">
+                <i class="bi bi-rulers"></i> Длина пароля: <strong><span id="lengthValue">16</span></strong>
+              </label>
               <input type="range" class="form-range" id="length" min="8" max="64" value="16">
-              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+              <div class="d-flex justify-content-between small fw-semibold" style="color: var(--text-secondary);">
+                <span>8</span>
+                <span>32</span>
+                <span>64</span>
+              </div>
             </div>
 
-            <div class="row g-3">
+            <!-- Character Types -->
+            <div class="row g-3 mb-4">
               <div class="col-sm-6">
-                <div class="form-check mb-2">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="lower" checked>
-                  <label class="form-check-label" for="lower">Строчные (a–z)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="upper" checked>
-                  <label class="form-check-label" for="upper">Прописные (A–Z)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="digits" checked>
-                  <label class="form-check-label" for="digits">Цифры (0–9)</label>
+                  <label class="form-check-label" for="lower">
+                    <i class="bi bi-type"></i> Строчные (a–z)
+                  </label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-check mb-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">
+                    <i class="bi bi-type-bold"></i> Прописные (A–Z)
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">
+                    <i class="bi bi-123"></i> Цифры (0–9)
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="symbols" checked>
-                  <label class="form-check-label" for="symbols">Символы (!@#$…)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="noRepeat">
-                  <label class="form-check-label" for="noRepeat">Без повторяющихся символов</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
-                  <label class="form-check-label" for="excludeAmbiguous">Исключить похожие (O/0, l/1)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
-                  <label class="form-check-label" for="excludeBrackets">Исключить скобки (){}[] &lt;&gt;</label>
+                  <label class="form-check-label" for="symbols">
+                    <i class="bi bi-asterisk"></i> Специальные символы
+                  </label>
                 </div>
               </div>
             </div>
 
-            <div class="input-group my-3">
-              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Пароль появится здесь" aria-label="Сгенерированный пароль" readonly>
-              <button class="btn btn-primary" type="button" id="generate">Сгенерировать</button>
-              <button class="btn btn-outline-secondary" type="button" id="copy">Копировать</button>
+            <!-- Advanced Options -->
+            <div class="mb-3">
+              <label class="form-label">
+                <i class="bi bi-gear-fill"></i> Дополнительные опции
+              </label>
+              <div class="row g-2">
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="noRepeat">
+                    <label class="form-check-label" for="noRepeat">
+                      Без повторяющихся символов
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                    <label class="form-check-label" for="excludeAmbiguous">
+                      Исключить похожие (O, 0, l, 1, I)
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                    <label class="form-check-label" for="excludeBrackets">
+                      Исключить скобки
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="small text-muted">Подсказка: для большинства аккаунтов выбирайте 16+ символов.</div>
           </form>
-
-          <hr class="my-4">
-          <div id="calc" class="row g-3 align-items-center">
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Надёжность</div>
-              <div class="progress" role="progressbar" aria-label="Надёжность пароля" aria-valuemin="0" aria-valuemax="100">
-                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
-              </div>
-              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
-            </div>
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Энтропия</div>
-              <div id="entropy" class="small">—</div>
-              <div class="text-muted small">Оценка случайности на основе выбранных опций.</div>
-            </div>
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Оценка взлома перебором</div>
-              <div id="crack" class="small">—</div>
-              <div class="text-muted small">Предполагаем 1 млрд попыток/сек., средний случай.</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Как это работает -->
-  <section id="howto" class="bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">Как это работает</h2>
-      <div class="row g-4 text-center">
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-sliders icon-lg"></i>
-            <h3 class="mt-3 h5">Выберите опции</h3>
-            <p>Установите длину пароля и включите нужные наборы: строчные, прописные, цифры, символы.</p>
+  <!-- How It Works -->
+  <section class="container my-5 py-5" id="howto">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">
+        <i class="bi bi-lightbulb-fill" style="color: var(--accent-1);"></i> Как это работает
+      </h2>
+      <p class="lead-text">Простая, безопасная и прозрачная генерация паролей</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-laptop"></i>
           </div>
+          <h5 class="fw-bold mb-3">100% на стороне клиента</h5>
+          <p class="mb-0">Всё работает в вашем браузере. Никакие данные никогда не отправляются на наши серверы или кому-либо ещё. Ваши пароли остаются полностью приватными.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-lightning-charge icon-lg"></i>
-            <h3 class="mt-3 h5">Нажмите «Сгенерировать»</h3>
-            <p>Инструмент мгновенно создаст случайную безопасную строку с учётом выбранных правил.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-shield-check"></i>
           </div>
+          <h5 class="fw-bold mb-3">Криптографически защищено</h5>
+          <p class="mb-0">Использует встроенный в браузер криптографический API для истинной случайности. Каждый пароль уникален и непредсказуем.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-clipboard-check icon-lg"></i>
-            <h3 class="mt-3 h5">Скопируйте и используйте</h3>
-            <p>Скопируйте пароль в буфер и вставляйте там, где требуется вход по учётным данным.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-sliders"></i>
           </div>
+          <h5 class="fw-bold mb-3">Полностью настраиваемо</h5>
+          <p class="mb-0">Выбирайте длину, типы символов и дополнительные опции для соответствия любым требованиям к паролям.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- О сервисе -->
-  <section id="about" class="container py-5">
-    <h2 class="text-center mb-4">Зачем нужен генератор паролей?</h2>
-    <p>
-      Генератор помогает создать <strong>сильные случайные пароли</strong> за секунды. Ручные пароли часто повторяют
-      шаблоны, включают личные данные или предсказуемые последовательности. Автоматическая генерация
-      избегает этих ловушек и выдаёт строки, удовлетворяющие строгим требованиям безопасности.
-    </p>
-    <p>
-      Этот <strong>бесплатный генератор</strong> работает полностью в браузере: мы ничего не храним и не передаём. Для старых форм
-      подойдёт 12 символов, для новых аккаунтов — лучше 16+, для банков и рабочих систем — 20+.
-      Чем длиннее пароль, тем выше защита.
-    </p>
-    <h3 class="mt-4 h5">Что делает пароль сильным?</h3>
-    <p>
-      Ключевые факторы — <strong>длина</strong> и <strong>энтропия</strong>. Короткие слова легко угадать, а 16-символьные строки,
-      использующие разные наборы символов, образуют миллиарды комбинаций. Избегайте словарных слов,
-      дат рождения и фраз, связанных с вашей личностью.
-    </p>
-    <h3 class="mt-4 h5">Практика</h3>
-    <p>
-      Используйте уникальный пароль для каждого сервиса и включайте двухфакторную аутентификацию (2FA).
-      Сохранение и авто-ввод удобнее поручить менеджеру паролей — так вы не запутаетесь в десятках строк,
-      и каждый логин останется уникальным.
-    </p>
+  <!-- About -->
+  <section class="container my-5 py-5" id="about">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="feature-card">
+          <h2 class="fw-bold mb-4">
+            <i class="bi bi-info-circle-fill" style="color: var(--accent-1);"></i> О сервисе
+          </h2>
+          <p class="mb-3" style="color: var(--text-secondary);">
+            GetPassnow — это бесплатный генератор паролей, который работает полностью в вашем браузере. 
+            Мы считаем, что надёжная безопасность должна быть доступна каждому, поэтому создали инструмент, который:
+          </p>
+          <ul style="color: var(--text-secondary);">
+            <li class="mb-2"><strong>Приватный:</strong> Пароли не сохраняются, не логируются и не передаются</li>
+            <li class="mb-2"><strong>Быстрый:</strong> Мгновенная генерация паролей без задержек</li>
+            <li class="mb-2"><strong>Безопасный:</strong> Использует криптографическую случайность для максимальной надёжности</li>
+            <li class="mb-2"><strong>Бесплатный:</strong> Всегда бесплатно, регистрация не требуется</li>
+          </ul>
+          <p class="mb-0" style="color: var(--text-secondary);">
+            Для максимальной безопасности рекомендуем использовать менеджер паролей для их хранения и 
+            включать двухфакторную аутентификацию на всех важных аккаунтах.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="faq-section bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Частые вопросы</h2>
-      <div class="accordion" id="faqAccordion">
+  <section class="container my-5 py-5" id="faq">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">
+        <i class="bi bi-question-circle-fill" style="color: var(--accent-1);"></i> Часто задаваемые вопросы
+      </h2>
+      <p class="lead-text">Всё, что нужно знать о безопасности паролей</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q1h">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
-              Могу ли я использовать генератор офлайн?
-            </button>
-          </h3>
-          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Да. После загрузки страницы интернет не требуется: вся логика выполняется локально.
-              Можно выключить Wi-Fi — генерация продолжит работать.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                Могу ли я использовать генератор офлайн?
+              </button>
+            </h3>
+            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Да. После загрузки страницы интернет не требуется: вся логика выполняется локально. 
+                Можно выключить Wi-Fi — генерация продолжит работать.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q2h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
-              Могу ли я выбрать точную длину пароля?
-            </button>
-          </h3>
-          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Конечно. Ползунок позволяет выбрать от 8 до 64 символов. Для чувствительных аккаунтов
-              разумно ориентироваться на 20+.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                Могу ли я выбрать точную длину пароля?
+              </button>
+            </h3>
+            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Конечно. Ползунок позволяет выбрать от 8 до 64 символов. Для чувствительных аккаунтов 
+                разумно ориентироваться на 20+.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q3h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
-              Могу ли я исключить похожие символы?
-            </button>
-          </h3>
-          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Да. Можно исключить символы, которые часто путают: например, O и 0 или l и 1 — это уменьшает риск ошибок при вводе.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                Могу ли я исключить похожие символы?
+              </button>
+            </h3>
+            <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Да. Можно исключить символы, которые часто путают: например, O и 0 или l и 1 — это 
+                уменьшает риск ошибок при вводе.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q4h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
-              Могу ли я запретить повторы?
-            </button>
-          </h3>
-          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Да. Включите опцию «без повторяющихся символов», и генератор гарантирует, что каждый символ в пароле встречается только один раз.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+                Могу ли я запретить повторы?
+              </button>
+            </h3>
+            <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Да. Включите опцию «без повторяющихся символов», и генератор гарантирует, что каждый 
+                символ в пароле встречается только один раз.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q5h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
-              Можно ли полагаться на этот инструмент для важных аккаунтов?
-            </button>
-          </h3>
-          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Да. Используется криптографический генератор случайных чисел браузера. В паре с длинным паролем и 2FA этого достаточно для банков, почты и рабочих систем.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+                Можно ли полагаться на этот инструмент для важных аккаунтов?
+              </button>
+            </h3>
+            <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Да. Используется криптографический генератор случайных чисел браузера. В паре с длинным 
+                паролем и 2FA этого достаточно для банков, почты и рабочих систем.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q6h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
-              Храните ли вы сгенерированные пароли?
-            </button>
-          </h3>
-          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Нет. Сервис ничего не сохраняет и никуда не отправляет. После закрытия или обновления страницы пароль исчезает. Для хранения используйте менеджер паролей.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+                Храните ли вы сгенерированные пароли?
+              </button>
+            </h3>
+            <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Нет. Сервис ничего не сохраняет и никуда не отправляет. После закрытия или обновления 
+                страницы пароль исчезает. Для хранения используйте менеджер паролей.
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Подвал -->
-  <footer class="bg-dark text-white text-center py-4">
-    <footer class="bg-dark text-white text-center py-4 mt-auto">
-  <div class="container small">
-    <p class="mb-2">© 2025 GetPassnow</p>
-    <p class="mb-0">
-      <a class="text-info text-decoration-none" href="/privacy/">Privacy</a> ·
-      <a class="text-info text-decoration-none" href="/terms/">Terms</a> ·
-      <a class="text-info text-decoration-none" href="/cookies/">Cookies</a> ·
-      <a class="text-info text-decoration-none" href="/disclaimer/">Disclaimer</a> ·
-      <a class="text-info text-decoration-none" href="/about/">About</a>
-    </p>
-  </div>
-</footer>
-
+  <!-- Footer -->
+  <footer class="text-white text-center py-4">
+    <div class="container">
+      <p class="mb-2">© 2025 GetPassnow</p>
+      <p class="mb-0">
+        <a href="/privacy/">Конфиденциальность</a> ·
+        <a href="/terms/">Условия</a> ·
+        <a href="/cookies/">Cookies</a> ·
+        <a href="/disclaimer/">Отказ от ответственности</a> ·
+        <a href="/about/">О нас</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- Генератор + Калькулятор (тот же JS, что в EN) -->
+  <!-- Generator Script -->
   <script>
-    (() => {
+    document.addEventListener('DOMContentLoaded', () => {
       const $ = s => document.querySelector(s);
       const length = $('#length');
+      const lengthValue = $('#lengthValue');
       const lower = $('#lower');
       const upper = $('#upper');
       const digits = $('#digits');
@@ -424,6 +1074,11 @@
       const label = $('#strengthLabel');
       const entropyEl = $('#entropy');
       const crackEl = $('#crack');
+
+      // Update length display
+      length.addEventListener('input', () => {
+        lengthValue.textContent = length.value;
+      });
 
       const sets = {
         lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -453,19 +1108,22 @@
       }
 
       function humanTime(seconds){
-        const units = [['год',31536000],['день',86400],['час',3600],['мин',60],['сек',1]];
-        for (const [name,s] of units) if (seconds >= s) {
-          const v = Math.floor(seconds/s);
-          const plural = (n,w1,w2,w5) => {
-            n = Math.abs(n)%100; const n1 = n%10;
-            if (n>10 && n<20) return w5;
-            if (n1>1 && n1<5) return w2;
-            if (n1==1) return w1;
-            return w5;
-          };
-          return v+' '+(name==='год'? plural(v,'год','года','лет'): name+(v>1?'':''));
+        if (seconds < 1) return '< 1 sec';
+        const units = [
+          ['year', 31536000],
+          ['month', 2592000],
+          ['day', 86400],
+          ['hour', 3600],
+          ['min', 60],
+          ['sec', 1]
+        ];
+        for (const [name, s] of units) {
+          if (seconds >= s) {
+            const v = Math.floor(seconds / s);
+            return v + ' ' + name + (v > 1 ? 's' : '');
+          }
         }
-        return '< 1 сек';
+        return '< 1 sec';
       }
 
       function calcStats(){
@@ -473,43 +1131,83 @@
         const pool = buildPool();
         const N = pool.length;
         if (!N || L<=0){
-          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
-          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+          bar.style.width='0%'; 
+          bar.className='progress-bar'; 
+          label.textContent='—';
+          entropyEl.textContent='—'; 
+          crackEl.textContent='—'; 
+          return;
         }
-        let entropyBits = 0; let keyspace = 0n;
-        if (noRepeat.checked){ keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
-        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        
+        let entropyBits = 0; 
+        let keyspace = 0n;
+        
+        if (noRepeat.checked){ 
+          keyspace=1n; 
+          for (let i=0;i<L;i++){ 
+            keyspace *= BigInt(N-i); 
+            entropyBits += Math.log2(N-i);
+          } 
+        } else { 
+          entropyBits = L * Math.log2(N); 
+          keyspace = BigInt(N) ** BigInt(L); 
+        }
+        
         const guessesPerSec = 1e9;
         let seconds;
-        try{ const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
-        catch{ seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+        try{ 
+          const ksNum = Number(keyspace); 
+          seconds = (ksNum/2)/guessesPerSec; 
+          if(!isFinite(seconds)) throw 0; 
+        } catch{ 
+          seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; 
+        }
 
         let pct=0, text='', cls='bg-danger';
-        if (entropyBits < 28){ pct=15; text='Очень слабый'; cls='bg-danger'; }
-        else if (entropyBits < 36){ pct=30; text='Слабый'; cls='bg-warning'; }
-        else if (entropyBits < 60){ pct=60; text='Средний'; cls='bg-info'; }
-        else if (entropyBits < 128){ pct=85; text='Сильный'; cls='bg-success'; }
-        else { pct=100; text='Очень сильный'; cls='bg-success'; }
+        if (entropyBits < 28){ 
+          pct=15; text='Very weak'; cls='bg-danger'; 
+        } else if (entropyBits < 36){ 
+          pct=30; text='Weak'; cls='bg-warning'; 
+        } else if (entropyBits < 60){ 
+          pct=60; text='Reasonable'; cls='bg-info'; 
+        } else if (entropyBits < 128){ 
+          pct=85; text='Strong'; cls='bg-success'; 
+        } else { 
+          pct=100; text='Very strong'; cls='bg-success'; 
+        }
+        
         bar.style.width = pct + '%';
         bar.className = 'progress-bar ' + cls;
-        label.textContent = text + ' · ' + L + ' симв. · набор ' + N;
-        entropyEl.textContent = entropyBits.toFixed(1) + ' бит';
+        label.textContent = text + ' · ' + L + ' chars · pool ' + N;
+        entropyEl.textContent = entropyBits.toFixed(1);
         crackEl.textContent = humanTime(seconds);
       }
 
       function generate(){
         const L = parseInt(length.value,10)||16;
         const pool = buildPool();
-        if (!pool){ output.value=''; calcStats(); return; }
+        if (!pool){ 
+          output.value=''; 
+          calcStats(); 
+          return; 
+        }
         const arr = pool.split('');
         if (noRepeat.checked && L > arr.length){
-          output.value='Увеличьте набор или отключите запрет повторов'; calcStats(); return;
+          output.value='Pool too small for no repeats'; 
+          calcStats(); 
+          return;
         }
-        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        const rnd = cryptoRandom(L); 
+        const used = new Set(); 
+        const res = [];
         for (let i=0;i<L;i++){
           let idx = rnd[i] % arr.length;
           if (noRepeat.checked){
-            let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; }
+            let k=0; 
+            while(used.has(idx) && k < arr.length){ 
+              idx=(idx+1)%arr.length; 
+              k++; 
+            }
             used.add(idx);
           }
           res.push(arr[idx]);
@@ -519,17 +1217,59 @@
       }
 
       ['change','input'].forEach(ev=>{
-        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
+        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> 
+          el.addEventListener(ev, calcStats)
+        );
       });
-      document.getElementById('generate').addEventListener('click', generate);
-      document.getElementById('copy').addEventListener('click', async () => {
+      
+      genBtn.addEventListener('click', generate);
+      
+      copyBtn.addEventListener('click', async () => {
         if (!output.value) return;
-        try { await navigator.clipboard.writeText(output.value);
-              document.getElementById('copy').textContent='Скопировано!';
-              setTimeout(()=>document.getElementById('copy').textContent='Копировать',1000);
-        } catch(e){ output.select(); document.execCommand('copy'); }
+        try {
+          await navigator.clipboard.writeText(output.value);
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Скопировано!';
+          setTimeout(() => copyBtn.innerHTML = originalHTML, 2000);
+        } catch(e){
+          output.select(); 
+          document.execCommand('copy');
+        }
       });
+      
       calcStats();
+      generate(); // Generate initial password
+    });
+  </script>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    (() => {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', currentTheme);
+      updateIcon(currentTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+      });
+
+      function updateIcon(theme) {
+        if (theme === 'dark') {
+          themeIcon.className = 'bi bi-moon-fill';
+        } else {
+          themeIcon.className = 'bi bi-sun-fill';
+        }
+      }
     })();
   </script>
 

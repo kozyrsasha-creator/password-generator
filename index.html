@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,15 +24,542 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
   <style>
-    body { font-family: system-ui, sans-serif; }
-    .icon-lg { font-size: 2rem; color: #0d6efd; }
-    .feature-card { border: 1px solid #eaeaea; border-radius: 12px; padding: 20px; height: 100%; background:#fff; box-shadow: 0 2px 6px rgba(0,0,0,.05);} 
-    .faq-section .accordion-button { font-weight: 600; }
-    .pw-output { font-family: ui-monospace, monospace; word-break: break-all; }
-    .navbar-toggler { border: 0; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar .nav-link { padding: .5rem .75rem; }
-    .dropdown-toggle { white-space: nowrap; }
+    :root[data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --text-primary: #1a1a2e;
+      --text-secondary: #6c757d;
+      --text-muted: #adb5bd;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --shadow: rgba(0, 0, 0, 0.1);
+      --accent-1: #667eea;
+      --accent-2: #764ba2;
+      --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --navbar-bg: rgba(255, 255, 255, 0.98);
+      --footer-bg: #1a1a2e;
+    }
+
+    :root[data-theme="dark"] {
+      --bg-primary: #0f0f1e;
+      --bg-secondary: #1a1a2e;
+      --bg-card: rgba(26, 26, 46, 0.9);
+      --text-primary: #e8e8f0;
+      --text-secondary: #b8b8c8;
+      --text-muted: #8888a0;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow: rgba(0, 0, 0, 0.3);
+      --accent-1: #7b93ff;
+      --accent-2: #9966cc;
+      --accent-gradient: linear-gradient(135deg, #7b93ff 0%, #9966cc 100%);
+      --card-bg: rgba(26, 26, 46, 0.95);
+      --navbar-bg: rgba(26, 26, 46, 0.98);
+      --footer-bg: #0a0a14;
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--accent-gradient);
+      opacity: 0.03;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .navbar {
+      background: var(--navbar-bg) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 20px var(--shadow);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem !important;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-1) !important;
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent-gradient);
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .btn-outline-secondary {
+      border-color: var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    .btn-outline-secondary:hover {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: white;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .lead-text {
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    .generator-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .generator-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent-gradient);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-range {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
+
+    .form-range::-webkit-slider-thumb {
+      background: var(--accent-gradient);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .form-range::-moz-range-thumb {
+      background: var(--accent-gradient);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow);
+      border: none;
+    }
+
+    .form-check {
+      padding: 0.75rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .form-check:hover {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+    }
+
+    .form-check-input {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid var(--border-color);
+      cursor: pointer;
+    }
+
+    .form-check-input:checked {
+      background: var(--accent-gradient);
+      border-color: transparent;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .password-output {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 1.25rem;
+      word-break: break-all;
+      color: var(--text-primary);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .password-output:focus {
+      border-color: var(--accent-1);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      outline: none;
+    }
+
+    .btn-gradient {
+      background: var(--accent-gradient);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      color: white;
+    }
+
+    .btn-gradient:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline-gradient {
+      background: var(--bg-secondary);
+      border: 2px solid var(--accent-1);
+      color: var(--accent-1);
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .btn-outline-gradient {
+      background: white;
+      border: 2px solid var(--accent-1);
+      color: var(--accent-1);
+    }
+
+    [data-theme="dark"] .btn-outline-gradient {
+      background: rgba(123, 147, 255, 0.1);
+      border: 2px solid var(--accent-1);
+      color: #a5b8ff;
+    }
+
+    .btn-outline-gradient:hover {
+      background: var(--accent-gradient) !important;
+      color: white !important;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .strength-meter {
+      background: var(--bg-secondary);
+      height: 12px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 1rem 0;
+      border: 1px solid var(--border-color);
+    }
+
+    [data-theme="light"] .strength-meter {
+      background: #e9ecef;
+    }
+
+    [data-theme="dark"] .strength-meter {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-bar {
+      transition: width 0.5s ease, background 0.3s ease;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+
+    .stat-card i {
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .stat-label {
+      color: #6c757d;
+    }
+
+    [data-theme="dark"] .stat-label {
+      color: #b8b8c8;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px var(--shadow);
+      border-color: var(--accent-1);
+    }
+
+    .feature-card h5 {
+      color: var(--text-primary);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: white;
+      font-size: 1.75rem;
+    }
+
+    .accordion {
+      background: transparent;
+    }
+
+    .accordion-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      background: transparent;
+      color: var(--text-primary);
+      font-weight: 600;
+      padding: 1.25rem 1.5rem;
+      border: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: var(--bg-secondary);
+      color: var(--accent-1);
+      box-shadow: none;
+    }
+
+    .accordion-button::after {
+      filter: var(--bs-accordion-btn-icon-filter);
+    }
+
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    .accordion-body {
+      padding: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      background: var(--bg-secondary);
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: var(--text-secondary);
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: var(--accent-1);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-2);
+      transform: translateY(-1px);
+    }
+
+    .dropdown-menu {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.5rem;
+      box-shadow: 0 10px 40px var(--shadow);
+    }
+
+    .dropdown-item {
+      color: var(--text-primary);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .navbar-toggler {
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .generator-card {
+        padding: 1.5rem;
+      }
+      
+      .btn-gradient, .btn-outline-gradient {
+        padding: 0.875rem 1.5rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .badge-new {
+      background: var(--accent-gradient);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
   </style>
 <script type="application/ld+json">
 {
@@ -106,7 +633,7 @@
       "name": "Can I prevent repeated symbols?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable the option “no repeated characters” and the generator will guarantee each symbol in your password appears only once. This can be helpful when following strict security policies."
+        "text": "Yes. Enable the option "no repeated characters" and the generator will guarantee each symbol in your password appears only once. This can be helpful when following strict security policies."
       }
     },
     {
@@ -131,9 +658,11 @@
 <body>
 
   <!-- Header / Brand -->
-  <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+  <nav class="navbar navbar-expand-md sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <a class="navbar-brand" href="/">
+        <i class="bi bi-shield-lock-fill"></i> GetPassnow
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -146,288 +675,371 @@
           <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         </ul>
 
-        <!-- Language dropdown (separate locale pages) -->
-        <div class="dropdown">
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            English
+        <div class="d-flex align-items-center gap-3">
+          <!-- Theme Toggle -->
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <i class="bi bi-sun-fill" id="themeIcon"></i>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/">English</a></li>
-            <li><a class="dropdown-item" href="/ru/">Русский</a></li>
-            <li><a class="dropdown-item" href="/de/">Deutsch</a></li>
-            <li><a class="dropdown-item" href="/es/">Español</a></li>
-            <li><a class="dropdown-item" href="/fr/">Français</a></li>
-            <li><a class="dropdown-item" href="/id/">Bahasa Indonesia</a></li>
-            <li><a class="dropdown-item" href="/pt/">Português</a></li>
-          </ul>
+
+          <!-- Language dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-globe"></i> English
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/"><i class="bi bi-check-lg text-success"></i> English</a></li>
+              <li><a class="dropdown-item" href="/ru/">Русский</a></li>
+              <li><a class="dropdown-item" href="/de/">Deutsch</a></li>
+              <li><a class="dropdown-item" href="/es/">Español</a></li>
+              <li><a class="dropdown-item" href="/fr/">Français</a></li>
+              <li><a class="dropdown-item" href="/id/">Bahasa Indonesia</a></li>
+              <li><a class="dropdown-item" href="/pt/">Português</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="container my-4">
+  <section class="container my-5 py-4">
     <div class="row justify-content-center">
-      <div class="col-lg-10 text-center">
-        <h1 class="mb-2">Generate a strong password in seconds</h1>
-        <p class="text-muted mb-4">Fast, secure, and free. Your password is generated locally in your browser and never sent to a server.</p>
+      <div class="col-lg-10 text-center fade-in-up">
+        <h1 class="mb-3">Generate Strong Passwords in Seconds</h1>
+        <p class="lead-text mb-5">Fast, secure, and completely free. Your password is generated locally in your browser and never sent to any server.</p>
 
-        <!-- Generator + Calculator -->
-        <div class="bg-white shadow p-4 rounded text-start">
+        <!-- Generator Card -->
+        <div class="generator-card text-start">
           <form id="pw-form" onsubmit="return false;">
-            <div class="mb-3">
-              <label for="length" class="form-label fw-semibold">Password length</label>
+            <!-- Password Output -->
+            <div class="mb-4">
+              <label class="form-label">
+                <i class="bi bi-key-fill"></i> Your Password
+              </label>
+              <input type="text" id="password" class="password-output form-control" readonly placeholder="Click Generate to create password">
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-sm-6">
+                <button type="button" id="generate" class="btn btn-gradient w-100">
+                  <i class="bi bi-arrow-clockwise"></i> Generate Password
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button type="button" id="copy" class="btn btn-outline-gradient w-100">
+                  <i class="bi bi-clipboard"></i> Copy to Clipboard
+                </button>
+              </div>
+            </div>
+
+            <!-- Strength Meter -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <label class="form-label mb-0">
+                  <i class="bi bi-bar-chart-fill"></i> Password Strength
+                </label>
+                <span id="strengthLabel" class="small fw-semibold" style="color: var(--text-secondary);">—</span>
+              </div>
+              <div class="strength-meter">
+                <div id="strengthBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="stat-card">
+                  <i class="bi bi-speedometer2 text-muted"></i>
+                  <span class="stat-value" id="entropy">—</span>
+                  <span class="stat-label">Entropy</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="stat-card">
+                  <i class="bi bi-hourglass-split text-muted"></i>
+                  <span class="stat-value" id="crack">—</span>
+                  <span class="stat-label">Time to Crack</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Length Slider -->
+            <div class="mb-4">
+              <label for="length" class="form-label">
+                <i class="bi bi-rulers"></i> Password Length: <strong><span id="lengthValue">16</span></strong>
+              </label>
               <input type="range" class="form-range" id="length" min="8" max="64" value="16">
-              <div class="d-flex justify-content-between small text-muted"><span>8</span><span>16</span><span>64</span></div>
+              <div class="d-flex justify-content-between small fw-semibold" style="color: var(--text-secondary);">
+                <span>8</span>
+                <span>32</span>
+                <span>64</span>
+              </div>
             </div>
 
-            <div class="row g-3">
+            <!-- Character Types -->
+            <div class="row g-3 mb-4">
               <div class="col-sm-6">
-                <div class="form-check mb-2">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="lower" checked>
-                  <label class="form-check-label" for="lower">Lowercase (a–z)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="upper" checked>
-                  <label class="form-check-label" for="upper">Uppercase (A–Z)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="digits" checked>
-                  <label class="form-check-label" for="digits">Digits (0–9)</label>
+                  <label class="form-check-label" for="lower">
+                    <i class="bi bi-type"></i> Lowercase (a–z)
+                  </label>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="form-check mb-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="upper" checked>
+                  <label class="form-check-label" for="upper">
+                    <i class="bi bi-type-bold"></i> Uppercase (A–Z)
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="digits" checked>
+                  <label class="form-check-label" for="digits">
+                    <i class="bi bi-123"></i> Numbers (0–9)
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="symbols" checked>
-                  <label class="form-check-label" for="symbols">Symbols (!@#$…)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="noRepeat">
-                  <label class="form-check-label" for="noRepeat">No repeated characters</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
-                  <label class="form-check-label" for="excludeAmbiguous">Exclude ambiguous (O/0, l/1)</label>
-                </div>
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="excludeBrackets">
-                  <label class="form-check-label" for="excludeBrackets">Exclude brackets (){}[] &lt;&gt;</label>
+                  <label class="form-check-label" for="symbols">
+                    <i class="bi bi-asterisk"></i> Special Symbols
+                  </label>
                 </div>
               </div>
             </div>
 
-            <div class="input-group my-3">
-              <input type="text" class="form-control pw-output" id="password" onfocus="this.select()" placeholder="Your password will appear here" aria-label="Generated password" readonly>
-              <button class="btn btn-primary" type="button" id="generate">Generate</button>
-              <button class="btn btn-outline-secondary" type="button" id="copy">Copy</button>
+            <!-- Advanced Options -->
+            <div class="mb-3">
+              <label class="form-label">
+                <i class="bi bi-gear-fill"></i> Advanced Options
+              </label>
+              <div class="row g-2">
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="noRepeat">
+                    <label class="form-check-label" for="noRepeat">
+                      No repeated characters
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+                    <label class="form-check-label" for="excludeAmbiguous">
+                      Exclude ambiguous (O, 0, l, 1, I)
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="excludeBrackets">
+                    <label class="form-check-label" for="excludeBrackets">
+                      Exclude brackets
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="small text-muted">Tip: aim for 16+ characters for most accounts.</div>
           </form>
-
-          <hr class="my-4">
-          <div id="calc" class="row g-3 align-items-center">
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Strength</div>
-              <div class="progress" role="progressbar" aria-label="Password strength" aria-valuemin="0" aria-valuemax="100">
-                <div id="strengthBar" class="progress-bar" style="width:0%"></div>
-              </div>
-              <div id="strengthLabel" class="mt-1 small text-muted">—</div>
-            </div>
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Entropy</div>
-              <div id="entropy" class="small">—</div>
-              <div class="text-muted small">Estimated bits of randomness based on your options.</div>
-            </div>
-            <div class="col-md-4">
-              <div class="fw-semibold mb-1">Estimated time to crack</div>
-              <div id="crack" class="small">—</div>
-              <div class="text-muted small">Assuming 1 billion guesses per second, average case.</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section id="howto" class="bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">How it works</h2>
-      <div class="row g-4 text-center">
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-sliders icon-lg"></i>
-            <h3 class="mt-3 h5">Choose options</h3>
-            <p>Select password length and toggle lowercase, uppercase, numbers, or symbols.</p>
+  <!-- How It Works -->
+  <section class="container my-5 py-5" id="howto">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">
+        <i class="bi bi-lightbulb-fill" style="color: var(--accent-1);"></i> How It Works
+      </h2>
+      <p class="lead-text">Simple, secure, and transparent password generation</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-laptop"></i>
           </div>
+          <h5 class="fw-bold mb-3">100% Client-Side</h5>
+          <p class="mb-0">Everything runs in your browser. No data is ever sent to our servers or anyone else. Your passwords stay completely private.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-lightning-charge icon-lg"></i>
-            <h3 class="mt-3 h5">Click generate</h3>
-            <p>Press the generate button and the tool instantly builds a random secure string.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-shield-check"></i>
           </div>
+          <h5 class="fw-bold mb-3">Cryptographically Secure</h5>
+          <p class="mb-0">Uses your browser's built-in crypto API for true randomness. Each password is unique and unpredictable.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card">
-            <i class="bi bi-clipboard-check icon-lg"></i>
-            <h3 class="mt-3 h5">Copy and use</h3>
-            <p>Copy your password to the clipboard and use it wherever you need credentials.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-sliders"></i>
           </div>
+          <h5 class="fw-bold mb-3">Fully Customizable</h5>
+          <p class="mb-0">Choose length, character types, and advanced options to match any password requirements.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="container py-5">
-    <h2 class="text-center mb-4">Why use a password generator?</h2>
-    <p>
-      A password generator helps you create <strong>strong, random passwords</strong> instantly. Human-made
-      passwords often repeat patterns, include personal details, or use predictable sequences.
-      A generator avoids these traps and produces strings that meet strict rules for security.
-      You decide the length — from 8 to 64 characters — and whether to include uppercase, lowercase,
-      digits, or symbols. Options such as <em>no repeated characters</em>, <em>exclude ambiguous</em> (O/0, l/1),
-      or <em>exclude brackets</em> make it possible to adapt passwords to specific websites.
-    </p>
-    <p>
-      This <strong>free password generator</strong> works entirely in your browser. Nothing is stored or
-      transmitted. That means you can generate a password while offline, confident that no third
-      party has access. Need something short for an outdated form? Generate 12 characters. Creating
-      a new account? Go with 16 or more. Protecting banking or work accounts? Choose 20+ characters.
-      The longer the password, the stronger the protection.
-    </p>
-    <h3 class="mt-4 h5">What makes a strong password?</h3>
-    <p>
-      Strength comes from <strong>length</strong> and <strong>entropy</strong>. Six-letter words or common names are
-      trivial to guess, while 16-character strings mixing different character sets create billions
-      of possible combinations. Avoid dictionary words, birthdays, and phrases tied to your identity.
-      If you prefer easier typing, a passphrase built from random words can be both practical and secure.
-    </p>
-    <h3 class="mt-4 h5">Best practices</h3>
-    <p>
-      Use a different password for every account. If one service is hacked, others remain protected.
-      Enable two-factor authentication (2FA) wherever available. Combine this generator with a
-      reputable password manager to save, organize, and autofill your credentials across devices.
-      That way, you won’t need to remember dozens of random strings, yet each login stays unique.
-    </p>
+  <section class="container my-5 py-5" id="about">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="feature-card">
+          <h2 class="fw-bold mb-4">
+            <i class="bi bi-info-circle-fill" style="color: var(--accent-1);"></i> About This Tool
+          </h2>
+          <p class="mb-3" style="color: var(--text-secondary);">
+            GetPassnow is a free password generator that runs entirely in your web browser. We believe 
+            strong security should be accessible to everyone, which is why we built this tool to be:
+          </p>
+          <ul style="color: var(--text-secondary);">
+            <li class="mb-2"><strong>Private:</strong> No passwords are stored, logged, or transmitted</li>
+            <li class="mb-2"><strong>Fast:</strong> Generate passwords instantly without delays</li>
+            <li class="mb-2"><strong>Secure:</strong> Uses cryptographic randomness for maximum strength</li>
+            <li class="mb-2"><strong>Free:</strong> Always free with no registration required</li>
+          </ul>
+          <p class="mb-0" style="color: var(--text-secondary);">
+            For maximum security, we recommend using a password manager to store your passwords and 
+            enabling two-factor authentication on all important accounts.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="faq-section bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-      <div class="accordion" id="faqAccordion">
+  <section class="container my-5 py-5" id="faq">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">
+        <i class="bi bi-question-circle-fill" style="color: var(--accent-1);"></i> Frequently Asked Questions
+      </h2>
+      <p class="lead-text">Everything you need to know about password security</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="faqAccordion">
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q1h">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
-              Can I use this generator offline?
-            </button>
-          </h3>
-          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Yes. Once the page has loaded in your browser, the generator does not need an internet
-              connection. All logic runs locally, so you can even switch off your Wi-Fi and still
-              produce new passwords.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+                Can I use this generator offline?
+              </button>
+            </h3>
+            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. Once the page has loaded in your browser, the generator does not need an internet 
+                connection. All logic runs locally, so you can even switch off your Wi-Fi and still 
+                produce new passwords.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q2h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
-              Can I decide the exact length of my password?
-            </button>
-          </h3>
-          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Absolutely. The slider lets you pick anywhere from 8 to 64 characters. Many sites allow 16,
-              but for accounts involving money or sensitive data it is smart to aim for 20+.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+                Can I decide the exact length of my password?
+              </button>
+            </h3>
+            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Absolutely. The slider lets you pick anywhere from 8 to 64 characters. Many sites allow 
+                16, but for accounts involving money or sensitive data it is smart to aim for 20+.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q3h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
-              Can I exclude confusing characters?
-            </button>
-          </h3>
-          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Yes. You can exclude characters that often get mixed up, like O and 0 or l and 1. This helps
-              when you need to read a password aloud or type it manually without mistakes.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+                Can I exclude confusing characters?
+              </button>
+            </h3>
+            <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. You can exclude characters that often get mixed up, like O and 0 or l and 1. This 
+                helps when you need to read a password aloud or type it manually without mistakes.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q4h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
-              Can I prevent repeated symbols?
-            </button>
-          </h3>
-        <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Yes. Enable the option “no repeated characters” and the generator will guarantee each symbol
-              in your password appears only once. This can be helpful when following strict security policies.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+                Can I prevent repeated symbols?
+              </button>
+            </h3>
+            <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. Enable the option "no repeated characters" and the generator will guarantee each 
+                symbol in your password appears only once. This can be helpful when following strict 
+                security policies.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q5h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
-              Can I rely on this for sensitive accounts?
-            </button>
-          </h3>
-          <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Yes. The generator uses cryptographic randomness built into modern browsers. Combine a long
-              password from here with two-factor authentication, and it is strong enough for banking,
-              work systems, or personal email.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
+                Can I rely on this for sensitive accounts?
+              </button>
+            </h3>
+            <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes. The generator uses cryptographic randomness built into modern browsers. Combine a 
+                long password from here with two-factor authentication, and it is strong enough for 
+                banking, work systems, or personal email.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item">
-          <h3 class="accordion-header h6" id="q6h">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
-              Can I store these passwords on your site?
-            </button>
-          </h3>
-          <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              No. This tool does not store or transmit any generated password. Once you close or refresh
-              the page, the password disappears. To keep them safe, use a trusted password manager.
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6">
+                Can I store these passwords on your site?
+              </button>
+            </h3>
+            <div id="q6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                No. This tool does not store or transmit any generated password. Once you close or refresh 
+                the page, the password disappears. To keep them safe, use a trusted password manager.
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-4">
-   <div class="container small">
-    <p class="mb-2">© 2025 GetPassnow</p>
-    <p class="mb-0">
-      <a class="text-info text-decoration-none" href="/privacy/">Privacy</a> ·
-      <a class="text-info text-decoration-none" href="/terms/">Terms</a> ·
-      <a class="text-info text-decoration-none" href="/cookies/">Cookies</a> ·
-      <a class="text-info text-decoration-none" href="/disclaimer/">Disclaimer</a> ·
-      <a class="text-info text-decoration-none" href="/about/">About</a>
-    </p>
-  </div>
+  <footer class="text-white text-center py-4">
+    <div class="container">
+      <p class="mb-2">© 2025 GetPassnow</p>
+      <p class="mb-0">
+        <a href="/privacy/">Privacy</a> ·
+        <a href="/terms/">Terms</a> ·
+        <a href="/cookies/">Cookies</a> ·
+        <a href="/disclaimer/">Disclaimer</a> ·
+        <a href="/about/">About</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- Generator + Calculator -->
+  <!-- Generator Script -->
   <script>
-    (() => {
+    document.addEventListener('DOMContentLoaded', () => {
       const $ = s => document.querySelector(s);
       const length = $('#length');
+      const lengthValue = $('#lengthValue');
       const lower = $('#lower');
       const upper = $('#upper');
       const digits = $('#digits');
@@ -442,6 +1054,11 @@
       const label = $('#strengthLabel');
       const entropyEl = $('#entropy');
       const crackEl = $('#crack');
+
+      // Update length display
+      length.addEventListener('input', () => {
+        lengthValue.textContent = length.value;
+      });
 
       const sets = {
         lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -471,10 +1088,20 @@
       }
 
       function humanTime(seconds){
-        const units = [['year',31536000],['day',86400],['hour',3600],['min',60],['sec',1]];
-        for (const [name,s] of units) if (seconds >= s) {
-          const v = Math.floor(seconds/s);
-          return v+' '+name+(v>1?'s':'');
+        if (seconds < 1) return '< 1 sec';
+        const units = [
+          ['year', 31536000],
+          ['month', 2592000],
+          ['day', 86400],
+          ['hour', 3600],
+          ['min', 60],
+          ['sec', 1]
+        ];
+        for (const [name, s] of units) {
+          if (seconds >= s) {
+            const v = Math.floor(seconds / s);
+            return v + ' ' + name + (v > 1 ? 's' : '');
+          }
         }
         return '< 1 sec';
       }
@@ -484,43 +1111,83 @@
         const pool = buildPool();
         const N = pool.length;
         if (!N || L<=0){
-          bar.style.width='0%'; bar.className='progress-bar'; label.textContent='—';
-          entropyEl.textContent='—'; crackEl.textContent='—'; return;
+          bar.style.width='0%'; 
+          bar.className='progress-bar'; 
+          label.textContent='—';
+          entropyEl.textContent='—'; 
+          crackEl.textContent='—'; 
+          return;
         }
-        let entropyBits = 0; let keyspace = 0n;
-        if (noRepeat.checked){ keyspace=1n; for (let i=0;i<L;i++){ keyspace *= BigInt(N-i); entropyBits += Math.log2(N-i);} }
-        else { entropyBits = L * Math.log2(N); keyspace = BigInt(N) ** BigInt(L); }
+        
+        let entropyBits = 0; 
+        let keyspace = 0n;
+        
+        if (noRepeat.checked){ 
+          keyspace=1n; 
+          for (let i=0;i<L;i++){ 
+            keyspace *= BigInt(N-i); 
+            entropyBits += Math.log2(N-i);
+          } 
+        } else { 
+          entropyBits = L * Math.log2(N); 
+          keyspace = BigInt(N) ** BigInt(L); 
+        }
+        
         const guessesPerSec = 1e9;
         let seconds;
-        try{ const ksNum = Number(keyspace); seconds = (ksNum/2)/guessesPerSec; if(!isFinite(seconds)) throw 0; }
-        catch{ seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; }
+        try{ 
+          const ksNum = Number(keyspace); 
+          seconds = (ksNum/2)/guessesPerSec; 
+          if(!isFinite(seconds)) throw 0; 
+        } catch{ 
+          seconds = Math.pow(2, Math.max(0, entropyBits-1)) / guessesPerSec; 
+        }
 
         let pct=0, text='', cls='bg-danger';
-        if (entropyBits < 28){ pct=15; text='Very weak'; cls='bg-danger'; }
-        else if (entropyBits < 36){ pct=30; text='Weak'; cls='bg-warning'; }
-        else if (entropyBits < 60){ pct=60; text='Reasonable'; cls='bg-info'; }
-        else if (entropyBits < 128){ pct=85; text='Strong'; cls='bg-success'; }
-        else { pct=100; text='Very strong'; cls='bg-success'; }
+        if (entropyBits < 28){ 
+          pct=15; text='Very weak'; cls='bg-danger'; 
+        } else if (entropyBits < 36){ 
+          pct=30; text='Weak'; cls='bg-warning'; 
+        } else if (entropyBits < 60){ 
+          pct=60; text='Reasonable'; cls='bg-info'; 
+        } else if (entropyBits < 128){ 
+          pct=85; text='Strong'; cls='bg-success'; 
+        } else { 
+          pct=100; text='Very strong'; cls='bg-success'; 
+        }
+        
         bar.style.width = pct + '%';
         bar.className = 'progress-bar ' + cls;
         label.textContent = text + ' · ' + L + ' chars · pool ' + N;
-        entropyEl.textContent = entropyBits.toFixed(1) + ' bits';
+        entropyEl.textContent = entropyBits.toFixed(1);
         crackEl.textContent = humanTime(seconds);
       }
 
       function generate(){
         const L = parseInt(length.value,10)||16;
         const pool = buildPool();
-        if (!pool){ output.value=''; calcStats(); return; }
+        if (!pool){ 
+          output.value=''; 
+          calcStats(); 
+          return; 
+        }
         const arr = pool.split('');
         if (noRepeat.checked && L > arr.length){
-          output.value='Increase pool or turn off no repeats'; calcStats(); return;
+          output.value='Pool too small for no repeats'; 
+          calcStats(); 
+          return;
         }
-        const rnd = cryptoRandom(L); const used = new Set(); const res = [];
+        const rnd = cryptoRandom(L); 
+        const used = new Set(); 
+        const res = [];
         for (let i=0;i<L;i++){
           let idx = rnd[i] % arr.length;
           if (noRepeat.checked){
-            let k=0; while(used.has(idx) && k < arr.length){ idx=(idx+1)%arr.length; k++; }
+            let k=0; 
+            while(used.has(idx) && k < arr.length){ 
+              idx=(idx+1)%arr.length; 
+              k++; 
+            }
             used.add(idx);
           }
           res.push(arr[idx]);
@@ -530,20 +1197,59 @@
       }
 
       ['change','input'].forEach(ev=>{
-        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> el.addEventListener(ev, calcStats));
+        [length,lower,upper,digits,symbols,noRepeat,excludeAmbiguous,excludeBrackets].forEach(el=> 
+          el.addEventListener(ev, calcStats)
+        );
       });
+      
       genBtn.addEventListener('click', generate);
+      
       copyBtn.addEventListener('click', async () => {
         if (!output.value) return;
         try {
           await navigator.clipboard.writeText(output.value);
-          copyBtn.textContent='Copied!';
-          setTimeout(()=>copyBtn.textContent='Copy', 1000);
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="bi bi-check-lg"></i> Copied!';
+          setTimeout(() => copyBtn.innerHTML = originalHTML, 2000);
         } catch(e){
-          output.select(); document.execCommand('copy');
+          output.select(); 
+          document.execCommand('copy');
         }
       });
+      
       calcStats();
+      generate(); // Generate initial password
+    });
+  </script>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    (() => {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', currentTheme);
+      updateIcon(currentTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+      });
+
+      function updateIcon(theme) {
+        if (theme === 'dark') {
+          themeIcon.className = 'bi bi-moon-fill';
+        } else {
+          themeIcon.className = 'bi bi-sun-fill';
+        }
+      }
     })();
   </script>
 

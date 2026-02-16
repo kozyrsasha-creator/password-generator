@@ -1,109 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <title>Cookie Policy – GetPassnow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Cookie Policy for GetPassnow. We operate without tracking cookies by default and use only essential services." />
+  <meta name="description" content="Cookie Policy: We use NO tracking cookies. Only localStorage for theme preference. No analytics, no ads, complete privacy. zero-knowledge architecture, Web Crypto API, GDPR & CCPA compliant. We never store your passwords." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://getpassnow.net/cookies/" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Cookie Policy – GetPassnow" />
-  <meta property="og:description" content="We don’t set tracking cookies by default. Learn about preferences and third-party assets." />
-  <meta property="og:url" content="https://getpassnow.net/cookies/" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Cookie Policy – GetPassnow" />
-  <meta name="twitter:description" content="We don’t set tracking cookies by default. Learn about preferences and third-party assets." />
-
-  <!-- Assets -->
   <link rel="icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
   <style>
-    body { font-family: system-ui, sans-serif; }
-    .navbar-toggler { border: 0; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar .nav-link { padding: .5rem .75rem; }
-    .dropdown-toggle { white-space: nowrap; }
-  </style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #212529;
+      --text-secondary: #6c757d;
+      --accent-1: #667eea;
+      --accent-2: #764ba2;
+      --border-color: #dee2e6;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+    }
 
-  <!-- JSON-LD: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Cookie Policy – GetPassnow",
-    "url":"https://getpassnow.net/cookies/",
-    "description":"Cookie Policy for GetPassnow. We operate without tracking cookies by default and use only essential services."
-  }
-  </script>
+    [data-theme="dark"] {
+      --bg-primary: #0f0f1e;
+      --bg-secondary: #1a1a2e;
+      --text-primary: #e8e8f0;
+      --text-secondary: #a0a0b8;
+      --border-color: #2d2d44;
+      --card-bg: #1a1a2e;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background: var(--card-bg) !important;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px var(--card-shadow);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-1) !important;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent-1);
+      transform: rotate(20deg);
+    }
+
+    main {
+      flex: 1;
+      background: var(--bg-secondary);
+      padding: 4rem 0;
+    }
+
+    .content-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px var(--card-shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .content-card h1 {
+      color: var(--text-primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content-card h2 {
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .content-card p, .content-card li {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .content-card ul, .content-card ol {
+      padding-left: 1.5rem;
+    }
+
+    .content-card code {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: var(--accent-1);
+      font-family: 'Courier New', monospace;
+    }
+
+    .content-card strong {
+      color: var(--text-primary);
+    }
+
+    .last-updated {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .highlight-box {
+      background: rgba(102, 126, 234, 0.05);
+      border-left: 4px solid var(--accent-1);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .stat-box {
+      background: rgba(102, 126, 234, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .stat-box .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-1);
+    }
+
+    @media (max-width: 768px) {
+      .content-card {
+        padding: 2rem 1.5rem;
+      }
+      main {
+        padding: 2rem 0;
+      }
+    }
+  </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-
-  <!-- Header -->
-  <nav class="navbar navbar-expand-md bg-light border-bottom">
+<body>
+  <nav class="navbar navbar-expand-md">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <a class="navbar-brand" href="/">GetPassnow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link " href="/about/">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/privacy/">Privacy</a></li>
-          <li class="nav-item"><a class="nav-link" href="/terms/">Terms</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/cookies/">Cookies</a></li>
-          <li class="nav-item"><a class="nav-link" href="/disclaimer/">Disclaimer</a></li>
+          <li class="nav-item"><a class="nav-link " href="/terms/">Terms</a></li>
+          <li class="nav-item"><a class="nav-link " href="/cookies/">Cookies</a></li>
+          <li class="nav-item"><a class="nav-link " href="/disclaimer/">Disclaimer</a></li>
         </ul>
+        
+        <button class="theme-toggle ms-3" id="themeToggle" aria-label="Toggle theme">
+          <i class="bi bi-sun-fill" id="themeIcon"></i>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Main -->
-  <main class="flex-grow-1">
-    <section class="container py-5">
-      <h1 class="mb-3">Cookie Policy</h1>
-      <p class="text-muted">Last updated: October 10, 2025</p>
+  <main>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="content-card">
+            <h1>Cookie Policy</h1>
+<span class="last-updated">Last updated: February 16, 2025</span>
 
-      <h2 class="h5 mt-4">1) Our approach</h2>
-      <p>We aim to run GetPassnow without tracking cookies. The password generator works entirely in your browser and does not depend on cookies for its main functionality.</p>
+<div class="highlight-box">
+  <p style="margin-bottom: 0;"><strong>Quick Summary:</strong> We use minimal cookies. Only localStorage for theme preference. No tracking, no analytics, no advertising cookies. Period.</p>
+</div>
 
-      <h2 class="h5 mt-4">2) Preferences and local storage</h2>
-      <p>If you use optional features in the future (for example, theme selection or language preference), your browser may store these settings in local storage. This data remains on your device and is never transmitted to our servers.</p>
+<h2>1) What Are Cookies?</h2>
+<p>Cookies are small text files stored on your device when you visit websites. They help websites remember your preferences and improve your browsing experience.</p>
 
-      <h2 class="h5 mt-4">3) Third-party assets</h2>
-      <p>Static resources such as Bootstrap or icons are loaded from trusted CDNs. These providers may keep minimal operational logs or set strictly necessary cookies under their own policies. We do not control or access third-party cookies.</p>
+<h2>2) Our Cookie Philosophy</h2>
+<p>We believe in <strong>privacy by design</strong>. That means:</p>
+<ul>
+  <li>✅ No tracking cookies</li>
+  <li>✅ No advertising cookies</li>
+  <li>✅ No analytics cookies</li>
+  <li>✅ No third-party cookies</li>
+  <li>✅ No session cookies</li>
+</ul>
 
-      <h2 class="h5 mt-4">4) How to control cookies</h2>
-      <p>You can manage or delete cookies in your browser settings. Refer to your browser’s documentation for instructions. Blocking cookies will not affect the generator’s ability to work properly.</p>
+<h2>3) What We Do Store</h2>
+<p>GetPassnow uses <code>localStorage</code> (not cookies) for exactly one thing:</p>
 
-      <h2 class="h5 mt-4">5) Updates</h2>
-      <p>We may revise this cookie policy to reflect future changes to the site or its dependencies. The “Last updated” date will be adjusted accordingly.</p>
-    </section>
+<div class="stat-box">
+  <span class="stat-number">1</span>
+  <p style="color: var(--text-secondary); margin: 0;">piece of data stored locally: your theme preference (light/dark mode)</p>
+</div>
+
+<p><strong>Specifically:</strong></p>
+<ul>
+  <li><strong>Key:</strong> <code>theme</code></li>
+  <li><strong>Value:</strong> <code>light</code> or <code>dark</code></li>
+  <li><strong>Purpose:</strong> Remember your theme choice between visits</li>
+  <li><strong>Location:</strong> Your browser's localStorage (never leaves your device)</li>
+  <li><strong>Expiration:</strong> Persists until you clear browser data</li>
+</ul>
+
+<h2>4) What We DON'T Store</h2>
+<p>Unlike many websites, we do NOT store:</p>
+<ul>
+  <li>❌ Generated passwords (they exist only in memory)</li>
+  <li>❌ Your browsing behavior</li>
+  <li>❌ Analytics or tracking data</li>
+  <li>❌ Advertising identifiers</li>
+  <li>❌ Session information</li>
+  <li>❌ User accounts or profiles</li>
+  <li>❌ Any personal information</li>
+</ul>
+
+<h2>5) Third-Party Cookies</h2>
+<p><strong>None.</strong> We do not use any third-party services that set cookies, including:</p>
+<ul>
+  <li>No Google Analytics</li>
+  <li>No Facebook Pixel</li>
+  <li>No advertising networks</li>
+  <li>No social media tracking</li>
+</ul>
+
+<p>The only external resources we load are:</p>
+<ul>
+  <li><strong>CDN assets</strong> (Bootstrap CSS/JS) – these don't set cookies</li>
+  <li><strong>Bootstrap Icons</strong> – these don't set cookies</li>
+</ul>
+
+<h2>6) How GetPassnow Differs from Other Sites</h2>
+<p>Most password generators and websites use extensive tracking. Here's how we compare:</p>
+
+<div class="highlight-box">
+  <p><strong>Typical website:</strong></p>
+  <ul>
+    <li>10-50+ cookies (analytics, ads, tracking)</li>
+    <li>Third-party data sharing</li>
+    <li>User behavior monitoring</li>
+    <li>Cross-site tracking</li>
+  </ul>
+  <p><strong>GetPassnow:</strong></p>
+  <ul>
+    <li>0 cookies</li>
+    <li>1 localStorage item (theme preference)</li>
+    <li>No tracking whatsoever</li>
+    <li>Complete privacy</li>
+  </ul>
+</div>
+
+<h2>7) Managing Your Data</h2>
+<p><strong>To clear your theme preference:</strong></p>
+<ol>
+  <li>Open your browser's Developer Tools (F12)</li>
+  <li>Go to Application/Storage tab</li>
+  <li>Find localStorage → getpassnow.net</li>
+  <li>Delete the "theme" entry</li>
+</ol>
+
+<p>Or simply clear your browser data (localStorage is cleared along with cookies).</p>
+
+<h2>8) Browser Settings</h2>
+<p>Since we don't use cookies, disabling cookies won't affect GetPassnow's functionality. However, disabling localStorage may reset your theme preference to light mode on each visit.</p>
+
+<h2>9) GDPR & CCPA Compliance</h2>
+<p>Our minimal approach means:</p>
+<ul>
+  <li>✅ No cookie consent banner needed (we don't use tracking cookies)</li>
+  <li>✅ No personal data processing</li>
+  <li>✅ No data sharing with third parties</li>
+  <li>✅ No user profiling</li>
+</ul>
+
+<h2>10) Changes to This Policy</h2>
+<p>If we ever need to store additional data (which is unlikely), we'll update this policy and notify users via this page. The "Last updated" date above will reflect any changes.</p>
+
+<div class="highlight-box">
+  <p style="margin-bottom: 0;"><strong>Our Commitment:</strong> We built GetPassnow with privacy as the foundation. We will never introduce tracking cookies or compromise your privacy for analytics or advertising revenue.</p>
+</div></div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-4 mt-auto">
-    <div class="container small">
-      <p class="mb-2">© 2025 GetPassnow</p>
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-2" style="color: var(--text-primary);">© 2025 GetPassnow</p>
       <p class="mb-0">
-        <a class="text-info text-decoration-none" href="/privacy/">Privacy</a> ·
-        <a class="text-info text-decoration-none" href="/terms/">Terms</a> ·
-        <a class="text-info text-decoration-none" href="/cookies/">Cookies</a> ·
-        <a class="text-info text-decoration-none" href="/disclaimer/">Disclaimer</a> ·
-        <a class="text-info text-decoration-none" href="/about/">About</a>
+        <a href="/privacy/">Privacy</a> ·
+        <a href="/terms/">Terms</a> ·
+        <a href="/cookies/">Cookies</a> ·
+        <a href="/disclaimer/">Disclaimer</a> ·
+        <a href="/about/">About</a>
       </p>
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('bi-sun-fill');
+        themeIcon.classList.add('bi-moon-fill');
+      } else {
+        themeIcon.classList.remove('bi-moon-fill');
+        themeIcon.classList.add('bi-sun-fill');
+      }
+    }
+  </script>
 </body>
 </html>

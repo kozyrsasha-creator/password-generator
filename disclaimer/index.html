@@ -1,115 +1,433 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <title>Disclaimer – GetPassnow</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Disclaimer for GetPassnow. This site provides information and a password generator as-is, without warranties or guarantees." />
+  <meta name="description" content="Security disclaimer: Strong passwords are one part of security. Learn best practices: 2FA, password managers, phishing awareness. zero-knowledge architecture, Web Crypto API, GDPR & CCPA compliant. We never store your passwords." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://getpassnow.net/disclaimer/" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Disclaimer – GetPassnow" />
-  <meta property="og:description" content="GetPassnow is an informational tool provided as-is, without any warranties. Read the disclaimer to learn more." />
-  <meta property="og:url" content="https://getpassnow.net/disclaimer/" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Disclaimer – GetPassnow" />
-  <meta name="twitter:description" content="GetPassnow is an informational tool provided as-is, without any warranties." />
-
-  <!-- Assets -->
   <link rel="icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
   <style>
-    body { font-family: system-ui, sans-serif; }
-    .navbar-toggler { border: 0; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar .nav-link { padding: .5rem .75rem; }
-    .dropdown-toggle { white-space: nowrap; }
-  </style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #212529;
+      --text-secondary: #6c757d;
+      --accent-1: #667eea;
+      --accent-2: #764ba2;
+      --border-color: #dee2e6;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+    }
 
-  <!-- JSON-LD: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"Disclaimer – GetPassnow",
-    "url":"https://getpassnow.net/disclaimer/",
-    "description":"Disclaimer for GetPassnow. This site provides information and a password generator as-is, without warranties or guarantees."
-  }
-  </script>
+    [data-theme="dark"] {
+      --bg-primary: #0f0f1e;
+      --bg-secondary: #1a1a2e;
+      --text-primary: #e8e8f0;
+      --text-secondary: #a0a0b8;
+      --border-color: #2d2d44;
+      --card-bg: #1a1a2e;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background: var(--card-bg) !important;
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px var(--card-shadow);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-1) !important;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent-1);
+      transform: rotate(20deg);
+    }
+
+    main {
+      flex: 1;
+      background: var(--bg-secondary);
+      padding: 4rem 0;
+    }
+
+    .content-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px var(--card-shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .content-card h1 {
+      color: var(--text-primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content-card h2 {
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .content-card p, .content-card li {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .content-card ul, .content-card ol {
+      padding-left: 1.5rem;
+    }
+
+    .content-card code {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: var(--accent-1);
+      font-family: 'Courier New', monospace;
+    }
+
+    .content-card strong {
+      color: var(--text-primary);
+    }
+
+    .last-updated {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .highlight-box {
+      background: rgba(102, 126, 234, 0.05);
+      border-left: 4px solid var(--accent-1);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+    }
+
+    .stat-box {
+      background: rgba(102, 126, 234, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .stat-box .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-1);
+    }
+
+    @media (max-width: 768px) {
+      .content-card {
+        padding: 2rem 1.5rem;
+      }
+      main {
+        padding: 2rem 0;
+      }
+    }
+  </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-
-  <!-- Header -->
-  <nav class="navbar navbar-expand-md bg-light border-bottom">
+<body>
+  <nav class="navbar navbar-expand-md">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="/">GetPassnow</a>
+      <a class="navbar-brand" href="/">GetPassnow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link " href="/about/">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/privacy/">Privacy</a></li>
-          <li class="nav-item"><a class="nav-link" href="/terms/">Terms</a></li>
-          <li class="nav-item"><a class="nav-link" href="/cookies/">Cookies</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/disclaimer/">Disclaimer</a></li>
+          <li class="nav-item"><a class="nav-link " href="/terms/">Terms</a></li>
+          <li class="nav-item"><a class="nav-link " href="/cookies/">Cookies</a></li>
+          <li class="nav-item"><a class="nav-link " href="/disclaimer/">Disclaimer</a></li>
         </ul>
+        
+        <button class="theme-toggle ms-3" id="themeToggle" aria-label="Toggle theme">
+          <i class="bi bi-sun-fill" id="themeIcon"></i>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Main -->
-  <main class="flex-grow-1">
-    <section class="container py-5">
-      <h1 class="mb-3">Disclaimer</h1>
-      <p class="text-muted">Last updated: October 10, 2025</p>
+  <main>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="content-card">
+            <h1>Disclaimer</h1>
+<span class="last-updated">Last updated: February 16, 2025</span>
 
-      <h2 class="h5 mt-4">1) Informational purpose only</h2>
-      <p>The content on GetPassnow is provided for general informational and educational purposes. It is not professional advice or a substitute for your own judgment regarding password management or security practices.</p>
+<div class="highlight-box">
+  <p style="margin-bottom: 0;"><strong>Important:</strong> GetPassnow provides a secure password generation tool, but overall account security depends on many factors beyond password strength alone.</p>
+</div>
 
-      <h2 class="h5 mt-4">2) No warranties</h2>
-      <p>The site and password generator are provided “as is” and “as available.” We make no representations or warranties of any kind, express or implied, regarding accuracy, reliability, or suitability for any purpose.</p>
+<h2>1) General Disclaimer</h2>
+<p>The information and tools provided by GetPassnow are for general informational and security purposes. While we use industry-standard cryptographic methods, we make no representations or warranties about:</p>
+<ul>
+  <li>The absolute security of generated passwords</li>
+  <li>Protection against all possible attack vectors</li>
+  <li>Compatibility with all systems and requirements</li>
+  <li>Uninterrupted availability of the Service</li>
+</ul>
 
-      <h2 class="h5 mt-4">3) Local generation</h2>
-      <p>All passwords are generated locally within your browser. We do not store, transmit, or have access to any data you produce. You are responsible for securely handling and saving any generated information.</p>
+<h2>2) No Professional Security Advice</h2>
+<p>GetPassnow is a tool, not a security consultancy. We do not provide:</p>
+<ul>
+  <li>Professional cybersecurity advice</li>
+  <li>Security audits or assessments</li>
+  <li>Incident response services</li>
+  <li>Compliance certifications</li>
+</ul>
+<p>For critical security decisions, consult qualified cybersecurity professionals.</p>
 
-      <h2 class="h5 mt-4">4) External links</h2>
-      <p>GetPassnow may contain links to external sites. We do not control and are not responsible for the content, privacy, or security of those external resources.</p>
+<h2>3) Password Security is Multi-Layered</h2>
+<p>A strong password is just <em>one</em> component of security. Complete protection requires:</p>
 
-      <h2 class="h5 mt-4">5) Limitation of liability</h2>
-      <p>To the fullest extent permitted by law, GetPassnow and its contributors shall not be held liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use or inability to use this site.</p>
+<div class="stat-box">
+  <span class="stat-number">4</span>
+  <p style="color: var(--text-secondary); margin: 0;">essential security layers beyond password strength</p>
+</div>
 
-      <h2 class="h5 mt-4">6) Consent</h2>
-      <p>By using this website, you acknowledge and agree to this disclaimer. If you do not agree, please discontinue using the site.</p>
+<ol>
+  <li><strong>Strong, Unique Passwords</strong> (that's where we help)
+    <ul>
+      <li>Use our generator for cryptographically secure passwords</li>
+      <li>Never reuse passwords across accounts</li>
+      <li>Aim for 16+ characters with mixed types</li>
+    </ul>
+  </li>
+  <li><strong>Two-Factor Authentication (2FA)</strong>
+    <ul>
+      <li>Use authenticator apps (Google Authenticator, Authy)</li>
+      <li>Hardware keys are even better (YubiKey, Titan)</li>
+      <li>Avoid SMS 2FA when possible (vulnerable to SIM swapping)</li>
+    </ul>
+  </li>
+  <li><strong>Password Manager</strong>
+    <ul>
+      <li>Use Bitwarden, 1Password, LastPass, or similar</li>
+      <li>Encrypted storage for all your passwords</li>
+      <li>Auto-fill reduces phishing risk</li>
+    </ul>
+  </li>
+  <li><strong>Security Awareness</strong>
+    <ul>
+      <li>Verify URLs before entering passwords</li>
+      <li>Be cautious of phishing attempts</li>
+      <li>Keep devices and software updated</li>
+      <li>Use HTTPS sites only</li>
+    </ul>
+  </li>
+</ol>
 
-      <h2 class="h5 mt-4">7) Updates</h2>
-      <p>We may update this disclaimer to reflect legal, technical, or operational changes. Please review it periodically for the latest version.</p>
-    </section>
+<h2>4) Technical Limitations</h2>
+<p><strong>Browser Compatibility:</strong> The Service requires a modern browser with Web Crypto API support. Older or heavily modified browsers may not work correctly.</p>
+
+<p><strong>Client-Side Security:</strong> Since generation happens in your browser, your device's security directly affects the Service's security. Compromised devices may compromise generated passwords.</p>
+
+<p><strong>No Server-Side Validation:</strong> We cannot verify that you're using generated passwords securely or storing them properly.</p>
+
+<h2>5) Common Security Mistakes to Avoid</h2>
+<ul>
+  <li>❌ Reusing passwords across accounts</li>
+  <li>❌ Storing passwords in plain text files</li>
+  <li>❌ Sharing passwords via email or messaging</li>
+  <li>❌ Using personal information in passwords</li>
+  <li>❌ Not enabling 2FA when available</li>
+  <li>❌ Falling for phishing attempts</li>
+  <li>❌ Using outdated browsers or operating systems</li>
+</ul>
+
+<h2>6) External Links & Third-Party Services</h2>
+<p>Our documentation may reference external resources or best practices. We are not responsible for:</p>
+<ul>
+  <li>Third-party website content or availability</li>
+  <li>External security recommendations</li>
+  <li>Changes to referenced services or standards</li>
+</ul>
+
+<h2>7) No Guarantee of Uninterrupted Service</h2>
+<p>The Service may experience:</p>
+<ul>
+  <li>Scheduled maintenance</li>
+  <li>Unexpected technical issues</li>
+  <li>Hosting provider outages</li>
+  <li>DDoS attacks or abuse</li>
+</ul>
+<p>We do not guarantee 100% uptime or availability.</p>
+
+<h2>8) Cryptographic Security Context</h2>
+<p>We use <code>crypto.getRandomValues()</code>, which provides:</p>
+<ul>
+  <li><strong>Cryptographically secure</strong> random number generation</li>
+  <li><strong>Industry-standard</strong> methods used by banks and password managers</li>
+  <li><strong>Operating system entropy</strong> from hardware sources</li>
+</ul>
+
+<p>However, security also depends on:</p>
+<ul>
+  <li>Your operating system's CSPRNG quality</li>
+  <li>Browser implementation correctness</li>
+  <li>No malware on your device</li>
+  <li>Secure HTTPS connection</li>
+</ul>
+
+<h2>9) Regulatory Compliance</h2>
+<p>Some industries require specific password policies:</p>
+<ul>
+  <li><strong>HIPAA (Healthcare):</strong> May require specific password complexity</li>
+  <li><strong>PCI DSS (Finance):</strong> Mandates certain password standards</li>
+  <li><strong>GDPR (EU):</strong> Requires appropriate security measures</li>
+</ul>
+<p>Verify that generated passwords meet your industry's specific requirements.</p>
+
+<h2>10) User Responsibility</h2>
+<p>You are solely responsible for:</p>
+<ul>
+  <li>How you use generated passwords</li>
+  <li>Where and how you store them</li>
+  <li>Keeping your devices secure</li>
+  <li>Complying with applicable laws</li>
+  <li>Following your organization's security policies</li>
+</ul>
+
+<h2>11) Changes to This Disclaimer</h2>
+<p>We may update this disclaimer as security best practices evolve or new threats emerge. Check this page periodically for updates.</p>
+
+<div class="highlight-box">
+  <p style="margin-bottom: 0;"><strong>Final Note:</strong> Security is a journey, not a destination. Strong passwords generated by GetPassnow are an excellent start, but they're just one piece of the puzzle. Stay informed, stay vigilant, and stay secure.</p>
+</div></div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-4 mt-auto">
-    <div class="container small">
-      <p class="mb-2">© 2025 GetPassnow</p>
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-2" style="color: var(--text-primary);">© 2025 GetPassnow</p>
       <p class="mb-0">
-        <a class="text-info text-decoration-none" href="/privacy/">Privacy</a> ·
-        <a class="text-info text-decoration-none" href="/terms/">Terms</a> ·
-        <a class="text-info text-decoration-none" href="/cookies/">Cookies</a> ·
-        <a class="text-info text-decoration-none" href="/disclaimer/">Disclaimer</a> ·
-        <a class="text-info text-decoration-none" href="/about/">About</a>
+        <a href="/privacy/">Privacy</a> ·
+        <a href="/terms/">Terms</a> ·
+        <a href="/cookies/">Cookies</a> ·
+        <a href="/disclaimer/">Disclaimer</a> ·
+        <a href="/about/">About</a>
       </p>
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('bi-sun-fill');
+        themeIcon.classList.add('bi-moon-fill');
+      } else {
+        themeIcon.classList.remove('bi-moon-fill');
+        themeIcon.classList.add('bi-sun-fill');
+      }
+    }
+  </script>
 </body>
 </html>

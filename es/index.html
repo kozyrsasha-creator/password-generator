@@ -377,6 +377,11 @@
       text-align: center;
       transition: all 0.3s ease;
       color: var(--text-primary);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .stat-card:hover {
@@ -387,6 +392,9 @@
     .stat-card i {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
 
     [data-theme="light"] .stat-card i {
@@ -404,7 +412,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      display: block;
+      display: block !important;
+      margin: 0.5rem 0;
+      min-height: 3rem;
+      line-height: 3rem;
     }
 
     .stat-label {
@@ -414,6 +425,7 @@
       letter-spacing: 0.05em;
       margin-top: 0.5rem;
       font-weight: 600;
+      display: block !important;
     }
 
     [data-theme="light"] .stat-label {
